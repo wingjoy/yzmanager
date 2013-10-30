@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<package name="strutsPerson" extends="struts-default">
+		<action name="addPersonalAction" class="com.yz.manager.personal.action.addPersonalAction">
+		    <result name="success">/personal/addPersonal.jsp</result>
+		    <result name="input">/personal/addPersonal.jsp</result>
+		  	<result name="invalid.token">/personal/addPersonal.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectPersonalByOption" class="com.yz.manager.personal.action.selectPersonalByOption">
+		    <result name="success">/personal/selectPersonalByOption.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectPersonalByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectDpPersonalByOption" class="com.yz.manager.personal.action.selectDpPersonalByOption">
+		    <result name="success">/personal/selectDpPersonalByOption.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectDpPersonalByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectOtherPersonalByOption" class="com.yz.manager.personal.action.selectOtherPersonalByOption">
+		    <result name="success">/personal/selectOtherPersonalByOption.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectOtherPersonalByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectMyPersonalByOption" class="com.yz.manager.personal.action.selectMyPersonalByOption">
+		    <result name="success">/personal/selectMyPersonalByOption.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectMyPersonalByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="selectOtherPersonalByOption" class="com.yz.manager.personal.action.selectOtherPersonalByOption">
+		    <result name="success">/personal/selectOtherPersonalByOption.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectOtherPersonalByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="deletePersonalAction" class="com.yz.manager.personal.action.deletePersonalAction">
+		    <result name="success">/personal/selectPersonal.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectPersonal.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteDpPersonalAction" class="com.yz.manager.personal.action.deleteDpPersonalAction">
+		    <result name="success">/personal/selectDpPersonal.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectDpPersonal.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteMyPersonalAction" class="com.yz.manager.personal.action.deleteMyPersonalAction">
+		    <result name="success">/personal/selectMyPersonal.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectMyPersonal.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteOtherPersonalAction" class="com.yz.manager.personal.action.deleteOtherPersonalAction">
+		    <result name="success">/personal/selectOtherPersonal.jsp?currentPage=1</result>
+		    <result name="input">/personal/selectOtherPersonal.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyPersonalAction" class="com.yz.manager.personal.action.modifyPersonalAction">
+		    <result name="success">/personal/modifyPersonal.jsp</result>
+		    <result name="input">/personal/modifyPersonal.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="personalExportAction" class="com.yz.manager.export.personalExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="personalExportByOptionAction" class="com.yz.manager.export.personalExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+	</package>
+</struts>

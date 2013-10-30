@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<package name="strutsExpense" extends="struts-default">
+		<action name="addexpenseAction" class="com.yz.manager.expense.action.addexpenseAction">
+		    <result name="success">/expense/addexpense.jsp</result>
+		    <result name="input">/expense/addexpense.jsp</result>
+		  	<result name="invalid.token">/expense/addexpense.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	<action name="deleteExpenseAction" class="com.yz.manager.expense.action.deleteExpenseAction">
+		    <result name="success">/expense/selectExpense.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectExpense.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteOtherExpenseAction" class="com.yz.manager.expense.action.deleteOtherExpenseAction">
+		    <result name="success">/expense/selectOtherExpense.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectOtherExpense.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteDpExpenseAction" class="com.yz.manager.expense.action.deleteDpExpenseAction">
+		    <result name="success">/expense/selectDpExpense.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectOtherExpense.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+     <action name="deleteExpenseAction1" class="com.yz.manager.expense.action.deleteExpenseAction1">
+		    <result name="success">/expense/applyExpenseState.jsp?currentPage=1</result>
+		    <result name="input">/expense/applyExpenseState.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>		
+	   <action name="modifyExpenseAction" class="com.yz.manager.expense.action.modifyExpenseAction">
+		    <result name="success">/expense/modifyExpense.jsp</result>
+		    <result name="input">/expense/modifyExpense.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	
+	<action name="selectExpenseByOption" class="com.yz.manager.expense.action.selectExpenseByOption">
+		    <result name="success">/expense/selectExpenseByOption.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectExpenseByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="selectDpExpenseByOption" class="com.yz.manager.expense.action.selectDpExpenseByOption">
+		    <result name="success">/expense/selectDpExpenseByOption.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectDpExpenseByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectOtherExpenseByOption" class="com.yz.manager.expense.action.selectOtherExpenseByOption">
+		    <result name="success">/expense/selectOtherExpenseByOption.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectOtherExpenseByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectMyExpenseByOption" class="com.yz.manager.expense.action.selectMyExpenseByOption">
+		    <result name="success">/expense/selectMyExpenseByOption.jsp?currentPage=1</result>
+		    <result name="input">/expense/selectMyExpenseByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	<action name="applyExpenseByOption" class="com.yz.manager.expense.action.applyExpenseByOption">
+		    <result name="success">/expense/applyExpenseStateByOption.jsp?currentPage=1</result>
+		    <result name="input">/expense/applyExpenseStateByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="verifyExpenseAction" class="com.yz.manager.expense.action.verifyExpenseAction">
+		    <result name="success">/expense/verifyExpenseDetail.jsp</result>
+		    <result name="input">/expense/verifyExpenseDetail.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="monthExpenseByOption" class="com.yz.manager.expense.action.monthExpenseByOption">
+		    <result name="result1">/expense/monthExpenseByOption.jsp</result>
+		    <result name="result3">/expense/monthExpenseByOption1.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="classExpenseCountByOption" class="com.yz.manager.expense.action.classExpenseCountByOption">
+		    <result name="result1">/expense/classExpenseCountByOption.jsp</result>
+		    <result name="result3">/expense/classExpenseCountByOption.jsp</result>	
+		     <result name="result2">/expense/classExpenseUsCountByOption.jsp</result> 	  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="classMyExpenseCountByOption" class="com.yz.manager.expense.action.classMyExpenseCountByOption">
+		     <result name="result2">/expense/classMyExpenseCountByOption.jsp</result> 	  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="monthDpExpenseByOption" class="com.yz.manager.expense.action.monthDpExpenseByOption">
+		    <result name="result1">/expense/monthDpExpenseByOption.jsp</result>
+		    <result name="result3">/expense/monthDpExpenseByOption1.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="monthMyExpenseByOption" class="com.yz.manager.expense.action.monthMyExpenseByOption">
+		    <result name="result3">/expense/monthMyExpenseByOption.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="classDpExpenseCountByOption" class="com.yz.manager.expense.action.classDpExpenseCountByOption">
+		    <result name="result1">/expense/classDpExpenseCountByOption.jsp</result>
+		    <result name="result3">/expense/classDpExpenseCountByOption.jsp</result>	
+		     <result name="result2">/expense/classDpExpenseUsCountByOption.jsp</result> 	  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+	</action>
+	<action name="expenseExportAction" class="com.yz.manager.export.expenseExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="expenseExportByOptionAction" class="com.yz.manager.export.expenseExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+	</package>
+</struts>

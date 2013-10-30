@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.yz.manager.personal.bean.personal" table="personal">
+    
+        <id name="id" column="id" type="int">
+        	<generator class="native" />
+        </id>
+        <property name="version" type="int"/> 
+        <property name="userName" /> 
+        <property name="department" /> 
+        <property name="firstCName" /> 
+        <property name="secondCName" /> 
+         <property name="registerDate" type="java.sql.Timestamp" /> 
+        <property name="companyName" />
+        <property name="companyAddress"/>
+        <property name="zipCode"  /> 
+        <property name="contactName"/> 
+         <property name="post"/>
+        <property name="workPhone"/>
+	    <property name="mobilePhone"  />
+        <property name="fax"/>
+	    <property name="mail"/>
+	    <property name="qq"/>
+        <property name="remarks"/>
+    </class>
+
+</hibernate-mapping>

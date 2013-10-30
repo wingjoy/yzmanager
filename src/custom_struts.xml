@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<package name="strutscustom" extends="struts-default">
+		<action name="deleteCustomType" class="com.yz.manager.custom.action.deleteCustomTypeAction">
+		    <result name="success">/custom/customType.jsp</result>
+		    <result name="input">/custom/customType.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="addCustomTypeAction" class="com.yz.manager.custom.action.addCustomTypeAction">
+		      <result name="success">/custom/customType.jsp</result>
+		    <result name="input">/custom/customType.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="addCustomAreaAction" class="com.yz.manager.custom.action.addCustomAreaAction">
+		    <result name="success">/custom/customArea.jsp?currentPage=1</result>
+		    <result name="input">/custom/customArea.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteCustomArea" class="com.yz.manager.custom.action.deleteCustomAreaAction">
+		    <result name="success">/custom/customArea.jsp?currentPage=1</result>
+		    <result name="input">/custom/customArea.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyCustomTypeAction" class="com.yz.manager.custom.action.modifyCustomTypeAction">
+		    <result name="success">/custom/customType.jsp</result>
+		    <result name="input">/custom/modifyCustomType.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+        <action name="modifyCustomArea" class="com.yz.manager.custom.action.modifyCustomAreaAction">
+		    <result name="success">/custom/customArea.jsp?currentPage=1</result>
+		    <result name="input">/custom/modifyCustomArea.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		  <action name="customAreaByOption" class="com.yz.manager.custom.action.customAreaByOptionAction">
+		    <result name="success">/custom/customAreaByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/customAreaByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="addUserAreaAction" class="com.yz.manager.custom.action.addUserAreaAction">
+		    <result name="exit">/custom/addUserArea.jsp</result>
+		    <result name="input">/custom/addUserArea.jsp</result>  
+		     <result name="notexit">/custom/userAreaManager.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteUserArea" class="com.yz.manager.custom.action.deleteUserAreaAction">
+		    <result name="success">/custom/userAreaManager.jsp?currentPage=1</result>
+		    <result name="input">/custom/userAreaManager.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="userAreaByOption" class="com.yz.manager.custom.action.userAreaByOptionAction">
+		    <result name="success">/custom/userAreaManagerByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/userAreaManagerByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="addCustomStateAction" class="com.yz.manager.custom.action.addCustomStateAction">
+		      <result name="success">/custom/customState.jsp</result>
+		    <result name="input">/custom/customState.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteCustomState" class="com.yz.manager.custom.action.deleteCustomStateAction">
+		    <result name="success">/custom/customState.jsp</result>
+		    <result name="input">/custom/customState.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyCustomStateAction" class="com.yz.manager.custom.action.modifyCustomStateAction">
+		    <result name="success">/custom/customState.jsp</result>
+		    <result name="input">/custom/modifyCustomState.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="addCustomAction" class="com.yz.manager.custom.action.addCustomAction">
+		     <result name="success">/custom/addCustom.jsp</result>
+		    <result name="input">/custom/addCustom.jsp</result>
+		  	<result name="invalid.token">/custom/addCustom.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteCustomAction" class="com.yz.manager.custom.action.deleteCustomAction">
+		    <result name="success">/custom/selectCustom.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectCustom.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteDpCustomAction" class="com.yz.manager.custom.action.deleteDpCustomAction">
+		    <result name="success">/custom/selectDpCustom.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectDpCustom.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteOtherCustomAction" class="com.yz.manager.custom.action.deleteOtherCustomAction">
+		    <result name="success">/custom/selectOtherCustom.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectOtherCustom.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteMyCustomAction" class="com.yz.manager.custom.action.deleteMyCustomAction">
+		    <result name="success">/custom/selectMyCustom.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectMyCustom.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyCustomAction" class="com.yz.manager.custom.action.modifyCustomAction">
+		    <result name="success">/custom/modifyCustom.jsp</result>
+		    <result name="input">/custom/modifyCustom.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteCustomRectifyAction" class="com.yz.manager.custom.action.deleteCustomRectifyAction">
+		    <result name="success">/custom/customRectify.jsp?currentPage=1</result>
+		    <result name="input">/custom/customRectify.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+			<action name="deleteDpCustomRectifyAction" class="com.yz.manager.custom.action.deleteDpCustomRectifyAction">
+		    <result name="success">/custom/dpCustomRectify.jsp?currentPage=1</result>
+		    <result name="input">/custom/dpCustomRectify.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyCustomRectifyAction" class="com.yz.manager.custom.action.modifyCustomRectifyAction">
+		    <result name="success">/custom/modifyCustomRectify.jsp</result>
+		    <result name="input">/custom/modifyCustomRectify.jsp</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectCustomByOption" class="com.yz.manager.custom.action.selectCustomByOption">
+		    <result name="success">/custom/selectCustomByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectCustomByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectDpCustomByOption" class="com.yz.manager.custom.action.selectDpCustomByOption">
+		    <result name="success">/custom/selectDpCustomByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectDpCustomByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectOtherCustomByOption" class="com.yz.manager.custom.action.selectOtherCustomByOption">
+		    <result name="success">/custom/selectOtherCustomByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectOtherCustomByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectMyCustomByOption" class="com.yz.manager.custom.action.selectMyCustomByOption">
+		    <result name="success">/custom/selectMyCustomByOption.jsp?currentPage=1</result>
+		    <result name="input">/custom/selectMyCustomByOption.jsp?currentPage=1</result>  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="customExportAction" class="com.yz.manager.export.customExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="customExportByOptionAction" class="com.yz.manager.export.customExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+	</package>
+</struts>

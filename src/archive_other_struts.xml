@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.multipart.saveDir" value="c:\"></constant>
+	<constant name="struts.custom.i18n.resources" value="Resources"></constant>
+	<constant name="struts.multipart.maxSize" value="30000000"></constant>
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<package name="strutsArchives" extends="struts-default">
+		<action name="addDepartmentAction" class="com.yz.manager.action.addDepartmentAction">
+		    <result name="success">/department/managerdDepartment.jsp?currentPage=1</result>
+		    <result name="input">/department/addDepartment.jsp?currentPage=1</result>
+		  	<result name="invalid.token">/department/addDepartment.jsp?currentPage=1</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	   
+	   <action name="adduserAction" class="com.yz.manager.action.adduserAction">
+		    <result name="success">/user/managerUser.jsp?currentPage=1</result>
+		    <result name="input">/user/adduser.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addComPanyAction" class="com.yz.manager.action.addCompanyAction">
+		    <result name="success">/gCompany/managerCompany.jsp</result>
+		    <result name="input">/gCompany/addCompany.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addHouseManagerAction" class="com.yz.manager.action.addHouseManagerAction">
+		    <result name="success">/shouse/houseManager.jsp</result>
+		    <result name="input">/shouse/addhouseManager.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addHouseClassAction" class="com.yz.manager.action.addHouseClassAction">
+		    <result name="success">/shouse/houseClassManager.jsp?currentPage=1</result>
+		    <result name="input">/shouse/addHousefirstClass.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addDpHouseClassAction" class="com.yz.manager.action.addDpHouseClassAction">
+		    <result name="success">/shouse/houseDpClassManager.jsp?currentPage=1</result>
+		    <result name="input">/shouse/addDpHousefirstClass.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="selectHouseFirstClassAction" class="com.yz.manager.action.selectHouseFirstClassAction">
+		    <result name="success">/shouse/houseClassManagerByOption.jsp?currentPage=1</result>
+		    <result name="input">/shouse/houseClassManager.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="selectDpHouseFirstClassAction" class="com.yz.manager.action.selectDpHouseFirstClassAction">
+		    <result name="success">/shouse/houseDpClassManagerByOption.jsp?currentPage=1</result>
+		    <result name="input">/shouse/houseDpClassManager.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="selectHouseSecondClassAction" class="com.yz.manager.action.selectHouseSecondClassAction">
+		    <result name="success">/shouse/managerHouseSClassByOption.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerHouseSClass.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="selectDpHouseSecondClassAction" class="com.yz.manager.action.selectDpHouseSecondClassAction">
+		    <result name="success">/shouse/managerDpHouseSClassByOption.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerDpHouseSClass.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deletehouseManagerAction" class="com.yz.manager.action.deletehouseManagerAction">
+		    <result name="success">/shouse/houseManager.jsp</result>
+		    <result name="input">/shouse/houseManager.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteDphouseManagerAction" class="com.yz.manager.action.deleteDphouseManagerAction">
+		    <result name="success">/shouse/houseDpManager.jsp</result>
+		    <result name="input">/shouse/houseDpManager.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteHouseFSAction" class="com.yz.manager.action.deleteHouseFSAction">
+		    <result name="success">/shouse/modifyHouseFSClass.jsp?currentPage=1</result>	  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteHouseSecondAction" class="com.yz.manager.action.deleteHouseSecondAction">
+		    <result name="success">/shouse/managerHouseSClass.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerHouseSClass.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteDpHouseSecondAction" class="com.yz.manager.action.deleteDpHouseSecondAction">
+		    <result name="success">/shouse/managerDpHouseSClass.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerDpHouseSClass.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+			<action name="modifyHouseSecondClassAction2" class="com.yz.manager.action.modifyHouseSecondClassAction2">
+		    <result name="success">/shouse/managerHouseSClass.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerHouseSClass.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+	<action name="modifyDpHouseSecondClassAction2" class="com.yz.manager.action.modifyDpHouseSecondClassAction2">
+		    <result name="success">/shouse/managerDpHouseSClass.jsp?currentPage=1</result>
+		    <result name="input">/shouse/managerDpHouseSClass.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+			<action name="modifyHouseSecondClassAction" class="com.yz.manager.action.modifyHouseSecondClassAction">
+		    <result name="success">/shouse/modifyHouseFSClass.jsp?currentPage=1</result>
+		    <result name="input">/shouse/modifyHouseFSClass.jsp?currentPage=1</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addPayModeAction" class="com.yz.manager.action.addPayModeAction">
+		    <result name="success">/paymode/managerPayMode.jsp</result>
+		    <result name="input">/paymode/managerPayMode.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addShouseAction" class="com.yz.manager.action.addShouseAction">
+		    <result name="success">/shouse/managerShouse.jsp</result>
+		    <result name="input">/shouse/addShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addDpShouseAction" class="com.yz.manager.action.addDpShouseAction">
+		    <result name="success">/shouse/managerDpShouse.jsp</result>
+		    <result name="input">/shouse/addDpShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+	  <action name="deleteCompany" class="com.yz.manager.action.deleteCompanyAction">
+		    <result name="success">/gCompany/managerCompany.jsp</result>
+		    <result name="input">/gCompany/managerCompany.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		  <action name="deleteShouseAction" class="com.yz.manager.action.deleteShouseAction">
+		    <result name="success">/shouse/managerShouse.jsp</result>
+		    <result name="input">/shouse/managerShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteDpShouseAction" class="com.yz.manager.action.deleteDpShouseAction">
+		    <result name="success">/shouse/managerDpShouse.jsp</result>
+		    <result name="input">/shouse/managerDpShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyShouseAction" class="com.yz.manager.action.modifyShouseAction">
+		    <result name="success">/shouse/managerShouse.jsp</result>
+		    <result name="input">/shouse/modifyShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyDpShouseAction" class="com.yz.manager.action.modifyDpShouseAction">
+		    <result name="success">/shouse/managerDpShouse.jsp</result>
+		    <result name="input">/shouse/modifyDpShouse.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyHouseManagerAction" class="com.yz.manager.action.modifyHouseManagerAction">
+		    <result name="success">/shouse/houseManager.jsp</result>
+		    <result name="input">/shouse/houseManager.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyDpHouseManagerAction" class="com.yz.manager.action.modifyDpHouseManagerAction">
+		    <result name="success">/shouse/houseDpManager.jsp</result>
+		    <result name="input">/shouse/houseDpManager.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	  <action name="deletePayMode" class="com.yz.manager.action.deletePayModeAction">
+		    <result name="success">/paymode/managerPayMode.jsp</result>
+		    <result name="input">/paymode/managerPayMode.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		 <action name="modifyPaymodeAction" class="com.yz.manager.action.modifyPaymodeAction">
+		    <result name="success">/paymode/managerPayMode.jsp</result>
+		    <result name="input">/paymode/modifyPayMode.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		 <action name="modifyCompanyAction" class="com.yz.manager.action.modifyCompanyAction">
+		    <result name="success">/gCompany/managerCompany.jsp</result>
+		    <result name="input">/gCompany/modifyCompany.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="addDpuserAction" class="com.yz.manager.action.addDpuserAction">
+		    <result name="success">/user/managerDepartmentUser.jsp?currentPage=1</result>
+		    <result name="input">/user/addDepartmentuser.jsp</result>		  	   
+		   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="addsystemAction" class="com.yz.manager.action.addsystemAction">
+		    <result name="success">/system/addsystemSuccess.jsp</result>
+		    <result name="input">/system/addsystem.jsp</result>		  	   
+		    <result name="invalid.token">/system/addsystem.jsp</result>	          
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+	
+	   <action name="addfirstClassAction" class="com.yz.manager.action.addfirstClassAction">
+		    <result name="success">/class/managerClass.jsp?currentPage=1</result>
+		    <result name="input">/class/addfirstClass.jsp</result>		  	   		           	     
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		 <action name="addDpfirstClassAction" class="com.yz.manager.action.addDpfirstClassAction">
+		    <result name="success">/class/managerDpClass.jsp?currentPage=1</result>
+		    <result name="input">/class/addDpfirstClass.jsp</result>		  	   		           	     
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="addsecondClassAction" class="com.yz.manager.action.addsecondClassAction">
+		    <result name="success">/class/managerClass.jsp?currentPage=1</result>
+		    <result name="input">/class/addsecondClass.jsp</result>		  	   		           	     
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="addDpsecondClassAction" class="com.yz.manager.action.addDpsecondClassAction">
+		    <result name="success">/class/managerDpClass.jsp?currentPage=1</result>
+		    <result name="input">/class/addDpsecondClass.jsp</result>		  	   		           	     
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="addArchivesAction" class="com.yz.manager.archives.action.addArchivesAction">	
+		    <result name="success">/archives/addArchives.jsp</result>
+		    <result name="input">/archives/addArchives.jsp</result>	
+		    <!--  
+		     <interceptor-ref name="fileUpload"> 	     
+		     <param name="allowedTypes">
+					image/bmp,image/x-png,image/gif,image/jpeg
+				</param>  		       
+		       <param name="maximumSize">30000000</param> 
+		       </interceptor-ref>  
+		      -->  	
+		       <interceptor-ref name="defaultStack">		   
+		     </interceptor-ref>  
+		        	  	   	  	      
+		</action> 
+		
+		<action name="deleteArchivesAction" class="com.yz.manager.archives.action.deleteArchivesAction">
+		    <result name="success">/archives/selectArchives.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectArchives.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteDpArchivesAction" class="com.yz.manager.archives.action.deleteDpArchivesAction">
+		    <result name="success">/archives/selectDpArchives.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectDpArchives.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="deleteArchivesAction1" class="com.yz.manager.archives.action.deleteArchivesAction1">
+		    <result name="success">/archives/applyArchivesState.jsp?averify=0&amp;currentPage=1</result>
+		    <result name="input">/archives/applyArchivesState.jsp?averify=0&amp;currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="modifyArchivesAction" class="com.yz.manager.archives.action.modifyArchivesAction">
+		    <result name="success">/archives/modifyArchives.jsp</result>
+		    <result name="input">/archives/modifyArchives.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="modifyDpArchivesAction" class="com.yz.manager.archives.action.modifyDpArchivesAction">
+		    <result name="success">/archives/modifyDpArchives.jsp</result>
+		    <result name="input">/archives/modifyDpArchives.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="verifyArchivesAction" class="com.yz.manager.archives.action.verifyArchivesAction">
+		    <result name="success">/archives/verifyArchives.jsp?currentPage=1</result>
+		    <result name="input">/archives/verifyArchivesDetail.jsp</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="selectArchivesByOption" class="com.yz.manager.archives.action.selectArchivesByOption">
+		    <result name="success">/archives/selectArchivesByOption.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectArchivesByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="selectDpArchivesByOption" class="com.yz.manager.archives.action.selectDpArchivesByOption">
+		    <result name="success">/archives/selectDpArchivesByOption.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectDpArchivesByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectMyArchivesByOption" class="com.yz.manager.archives.action.selectMyArchivesByOption">
+		    <result name="success">/archives/selectMyArchivesByOption.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectMyArchivesByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectOtherArchivesByOption" class="com.yz.manager.archives.action.selectOtherArchivesByOption">
+		    <result name="success">/archives/selectOtherArchivesByOption.jsp?currentPage=1</result>
+		    <result name="input">/archives/selectOtherArchivesByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="applyArchivesByOption" class="com.yz.manager.archives.action.applyArchivesByOption">
+		    <result name="success">/archives/applyArchivesStateByOption.jsp?currentPage=1</result>
+		    <result name="input">/archives/applyArchivesStateByOption.jsp?currentPage=1</result>		  	   
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="addpowerAction" class="com.yz.manager.action.addpowerAction">
+		    <result name="success">/power/managerPower.jsp?currentPage=1</result>
+		    <result name="input">/power/addpower.jsp</result>		  	   
+		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addDppowerAction" class="com.yz.manager.action.addDppowerAction">
+		    <result name="success">/power/managerDpPower.jsp?currentPage=1</result>
+		    <result name="input">/power/addDpDppower.jsp</result>		  	   
+		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="loginSystemAction" class="com.yz.manager.action.loginSystemAction">
+		    <result name="success">loginsuccess.jsp</result>
+		    <result name="input">index.jsp</result>	
+		     <result name="error">index.jsp</result>		
+		      <result name="password">index.jsp</result>
+		       <result name="notuse">index.jsp</result>					  	   
+		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="logoutAction" class="com.yz.manager.action.logoutAction">
+		    <result name="success">index.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="deleteDepartment" class="com.yz.manager.action.deleteDepartment">
+		    <result name="success">managerdDepartment.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="modifyDepartment" class="com.yz.manager.action.modifyDepartment">
+		    <result name="success">managerdDepartment.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="deleteUser" class="com.yz.manager.action.deleteUser">
+		    <result name="success">/user/managerUser.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteDpUser" class="com.yz.manager.action.deleteDpUser">
+		    <result name="success">/user/managerDepartmentUser.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="modifyUser" class="com.yz.manager.action.modifyUser">
+		    <result name="success">/user/managerUser.jsp?currentPage=1</result>
+		    <result name="input">/user/modifyUser.jsp</result>			  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="modifyDpUser" class="com.yz.manager.action.modifyDpUser">
+		    <result name="success">/user/managerDepartmentUser.jsp?currentPage=1</result>	
+		    <result name="input">/user/modifyDpUser.jsp</result>		  	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="selectUserByDAction" class="com.yz.manager.action.selectUserByDAction">
+		    <result name="success">/user/managerUserByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="selectUserPowerByDAction" class="com.yz.manager.action.selectUserPowerByDAction">
+		    <result name="success">/power/managerPowerByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="addManagerAction" class="com.yz.manager.action.addManagerAction">
+		    <result name="success">/user/manager.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="deleteManager" class="com.yz.manager.action.deleteManager">
+		    <result name="success">/user/manager.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="modifyManager" class="com.yz.manager.action.modifyManager">
+		    <result name="success">/user/manager.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="deletePower" class="com.yz.manager.action.deletePower">
+		    <result name="success">/power/managerPower.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+		
+		<action name="selectFirstClassAction" class="com.yz.manager.action.selectFirstClassAction">
+		    <result name="success">/class/managerClassByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="selectDpFirstClassAction" class="com.yz.manager.action.selectDpFirstClassAction">
+		    <result name="success">/class/managerDpClassByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>    
+		
+		<action name="selectSecondClassAction" class="com.yz.manager.action.selectSecondClassAction">
+		    <result name="success">/class/managerSClassByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="selectDpSecondClassAction" class="com.yz.manager.action.selectDpSecondClassAction">
+		    <result name="success">/class/managerDpSClassByOption.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>   
+		
+		<action name="deleteFirstAction" class="com.yz.manager.action.deleteFirstAction">
+		    <result name="success">/class/managerClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteHouseFirstAction" class="com.yz.manager.action.deleteHouseFirstAction">
+		    <result name="success">/shouse/houseClassManager.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteDpHouseFirstAction" class="com.yz.manager.action.deleteDpHouseFirstAction">
+		    <result name="success">/shouse/houseDpClassManager.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 	
+		<action name="deleteDpFirstAction" class="com.yz.manager.action.deleteDpFirstAction">
+		    <result name="success">/class/managerDpClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>   
+		
+		<action name="modifyFirstClassAction" class="com.yz.manager.action.modifyFirstClassAction">
+		    <result name="success">/class/managerClass.jsp?currentPage=1</result>		
+		     <result name="input">/class/modifyFirstClass.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+		<action name="modifyHouseFirstClassAction" class="com.yz.manager.action.modifyHouseFirstClassAction">
+		    <result name="success">/shouse/houseClassManager.jsp?currentPage=1</result>		
+		    <result name="input">/shouse/modifyHouseFirstClass.jsp</result>		    
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="modifyDpHouseFirstClassAction" class="com.yz.manager.action.modifyDpHouseFirstClassAction">
+		    <result name="success">/shouse/houseDpClassManager.jsp?currentPage=1</result>		
+		    <result name="input">/shouse/modifyDpHouseFirstClass.jsp</result>		    
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addHouseSecondClassAction" class="com.yz.manager.action.addHouseSecondClassAction">
+		    <result name="success">/shouse/houseClassManager.jsp?currentPage=1</result>		
+		    <result name="input">/shouse/addHousesecondClass.jsp</result>		    
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="addDpHouseSecondClassAction" class="com.yz.manager.action.addDpHouseSecondClassAction">
+		    <result name="success">/shouse/houseDpClassManager.jsp?currentPage=1</result>		
+		    <result name="input">/shouse/addDpHousesecondClass.jsp</result>		    
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>   
+		<action name="modifyDpFirstClassAction" class="com.yz.manager.action.modifyDpFirstClassAction">
+		    <result name="success">/class/managerDpClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="modifySecondClassAction" class="com.yz.manager.action.modifySecondClassAction">
+		    <result name="success">/class/modifyFSClass.jsp?fId=null&amp;currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		
+		<action name="modifySecondClassAction2" class="com.yz.manager.action.modifySecondClassAction2">
+		    <result name="success">/class/managerSClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>   
+		<action name="modifyDpSecondClassAction2" class="com.yz.manager.action.modifyDpSecondClassAction2">
+		    <result name="success">/class/managerDpSClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="deleteFSAction" class="com.yz.manager.action.deleteFSAction">
+		    <result name="success">/class/modifyFSClass.jsp?fId=null&amp;currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+		
+		<action name="deleteSecondAction" class="com.yz.manager.action.deleteSecondAction">
+		    <result name="success">/class/managerSClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="deleteDpSecondAction" class="com.yz.manager.action.deleteDpSecondAction">
+		    <result name="success">/class/managerDpSClass.jsp?currentPage=1</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		
+		<action name="modifyUserPassword" class="com.yz.manager.action.modifyUserPassword">
+		    <result name="success">/user/modifyPassword.jsp</result>
+		     <result name="input">/user/modifyPassword.jsp</result>		  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+		<action name="archiveExportAction" class="com.yz.manager.export.archiveExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="archiveExportByOptionAction" class="com.yz.manager.export.archiveExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+	</package>
+
+</struts>

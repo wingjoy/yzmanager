@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+   
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<include file="personal_struts.xml"></include>
+	<include file="archive_other_struts.xml"></include>
+    <include file="expense_struts.xml"></include>
+    <include file="store_struts.xml"></include>
+    <include file="custom_struts.xml"></include>
+	<package name="struts2" extends="struts-default">
+	<global-results>
+		<result name="globalException">/exception.jsp</result>
+	</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="globalException" exception="java.lang.Exception"></exception-mapping> 
+			<exception-mapping result="globalException" exception="java.sql.SQLException"> </exception-mapping>
+			
+			
+        </global-exception-mappings>
+	
+	</package>
+
+</struts>

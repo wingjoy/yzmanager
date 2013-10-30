@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.yz.manager.bean.power" table="power">
+    
+        <id name="id" column="id" type="int">
+        	<generator class="native" />
+        </id>
+        <property name="userName"/>    
+        <property name="name"/>            
+         <property name="department"/> 
+         <property name="systemManager" column="systemManager" type="boolean"></property>        
+        <property name="departmentManager" column="departmentManager" type="boolean"></property>       
+        <property name="ams" column="ams" type="boolean"></property>        
+        <property name="amsselect" column="amsselect" type="boolean"></property>
+        <property name="amsadd" column="amsadd" type="boolean"></property>
+        <property name="amsmodify" column="amsmodify" type="boolean"></property>
+        <property name="amsdelete" column="amsdelete" type="boolean"></property>
+	    <property name="amsSelectOther" column="amsSelectOther" type="boolean"></property>
+        <property name="averify" column="averify" type="boolean"></property> 
+             
+        <property name="pms" column="pms" type="boolean"></property>            
+        <property name="pmsselect" column="pmsselect" type="boolean"></property>
+        <property name="pmsadd" column="pmsadd" type="boolean"></property>
+        <property name="pmsmodify" column="pmsmodify" type="boolean"></property>
+        <property name="pmsdelete" column="pmsdelete" type="boolean"></property>
+	    <property name="pmsSelectOther" column="pmsSelectOther" type="boolean"></property>
+        
+        <property name="ems" column="ems" type="boolean"></property>           
+        <property name="emsselect" column="emsselect" type="boolean"></property>
+        <property name="emsadd" column="emsadd" type="boolean"></property>
+        <property name="emsmodify" column="emsmodify" type="boolean"></property>
+        <property name="emsdelete" column="emsdelete" type="boolean"></property>
+	    <property name="emsSelectOther" column="emsSelectOther" type="boolean"></property>
+        <property name="everify" column="everify" type="boolean"></property> 
+        <property name="emsMonth" column="emsMonth" type="boolean"></property> 
+        <property name="emsClass" column="emsClass" type="boolean"></property> 
+        
+        <property name="ims" column="ims" type="boolean"></property>       
+        <property name="imsInRegister" column="imsInRegister" type="boolean"></property>
+        <property name="imsOutRegister" column="imsOutRegister" type="boolean"></property> 
+        <property name="iverify" column="iverify" type="boolean"></property>  
+        
+         <property name="cms" column="cms" type="boolean"></property>       
+        <property name="cmsselect" column="cmsselect" type="boolean"></property>
+        <property name="cmsadd" column="cmsadd" type="boolean"></property>
+        <property name="cmsmodify" column="cmsmodify" type="boolean"></property>
+        <property name="cmsdelete" column="cmsdelete" type="boolean"></property>
+	    <property name="cmsSelectOther" column="cmsSelectOther" type="boolean"></property>
+      
+        
+        <many-to-one name="user" column="user_id" unique="true" />  
+        
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<package name="strutsStore" extends="struts-default">
+		<action name="inStoreAction" class="com.yz.manager.storehouse.action.inStoreAction">
+		    <result name="success">/storehouse/inRegister.jsp</result>
+		    <result name="input">/storehouse/inRegister.jsp</result>
+		  	<result name="invalid.token">/storehouse/inRegister.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="outStoreAction" class="com.yz.manager.storehouse.action.outStoreAction">
+		    <result name="success">/storehouse/outRegister.jsp</result>
+		    <result name="input">/storehouse/outRegister.jsp</result>
+		  	<result name="invalid.token">/storehouse/outRegister.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="manualOutStoreAction" class="com.yz.manager.storehouse.action.manualOutStoreAction">
+		    <result name="success">/storehouse/manualOutRegister.jsp</result>
+		    <result name="input">/storehouse/manualOutRegister.jsp</result>
+		  	<result name="invalid.token">/storehouse/manualOutRegister.jsp</result>	         
+	        <interceptor-ref name="token"></interceptor-ref>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="verifyStoreAction" class="com.yz.manager.storehouse.action.verifyStoreAction">
+		    <result name="success">/storehouse/verifyStoreDetail.jsp</result>
+		    <result name="input">/storehouse/verifyStoreDetail.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="verifyOutStoreAction" class="com.yz.manager.storehouse.action.verifyOutStoreAction">
+		    <result name="success">/storehouse/outStoreVerify.jsp</result>
+		    <result name="input">/storehouse/verifyOutStoreDetail.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteStoreAction1" class="com.yz.manager.storehouse.action.deleteStoreAction1">
+		    <result name="success">/storehouse/myInStore.jsp</result>
+		    <result name="input">/storehouse/myInStore.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteStoreAction" class="com.yz.manager.storehouse.action.deleteStoreAction">
+		    <result name="success">/storehouse/inSelect.jsp</result>
+		    <result name="input">/storehouse/inSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="myStoreByOption" class="com.yz.manager.storehouse.action.myStoreByOption">
+		    <result name="success">/storehouse/myInStoreByOption.jsp</result>
+		    <result name="input">/storehouse/myInStore.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="myOutStoreByOption" class="com.yz.manager.storehouse.action.myOutStoreByOption">
+		    <result name="success">/storehouse/myOutStoreByOption.jsp</result>
+		    <result name="input">/storehouse/myOutStore.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="myDpOutStoreByOption" class="com.yz.manager.storehouse.action.myOutStoreByOption">
+		    <result name="success">/storehouse/myDpOutStoreByOption.jsp</result>
+		    <result name="input">/storehouse/myDpOutStore.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="inSelectByOption" class="com.yz.manager.storehouse.action.inSelectByOption">
+		    <result name="success">/storehouse/inSelectByOption.jsp</result>
+		    <result name="input">/storehouse/inSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="inDpSelectByOption" class="com.yz.manager.storehouse.action.inDpSelectByOption">
+		    <result name="success">/storehouse/inDpSelectByOption.jsp</result>
+		    <result name="input">/storehouse/inDpSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="outSelectByOption" class="com.yz.manager.storehouse.action.outSelectByOption">
+		    <result name="success">/storehouse/outSelectByOption.jsp</result>
+		    <result name="input">/storehouse/outSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="outDpSelectByOption" class="com.yz.manager.storehouse.action.outDpSelectByOption">
+		    <result name="success">/storehouse/outDpSelectByOption.jsp</result>
+		    <result name="input">/storehouse/outDpSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="storeCountByOption" class="com.yz.manager.storehouse.action.StoreCountByOption">
+		    <result name="success">/storehouse/storeSelectByOption.jsp</result>
+		    <result name="input">/storehouse/storeSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="storeDpCountByOption" class="com.yz.manager.storehouse.action.storeDpCountByOption">
+		    <result name="success">/storehouse/storeDpSelectByOption.jsp</result>
+		    <result name="input">/storehouse/storeDpSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteOutStoreAction" class="com.yz.manager.storehouse.action.deleteOutStoreAction">
+		    <result name="success">/storehouse/outSelect.jsp</result>
+		    <result name="input">/storehouse/outSelect.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="deleteMyOutStoreAction" class="com.yz.manager.storehouse.action.deleteMyOutStoreAction">
+		    <result name="success">/storehouse/myOutStore.jsp</result>
+		    <result name="input">/storehouse/myOutStore.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="inStoreSumByOption" class="com.yz.manager.storehouse.action.inStoreSumAction">
+		    <result name="sumCount">/storehouse/inStoreSumByOption.jsp</result>
+		    <result name="sumExpenseCount">/storehouse/inStoreExpenseSumByOption.jsp</result>
+		     <result name="sumCount1">/storehouse/inStoreSumByOption1.jsp</result>
+		    <result name="sumExpenseCount1">/storehouse/inStoreExpenseSumByOption1.jsp</result>
+		     <result name="sumCount2">/storehouse/inStoreSumByOption2.jsp</result>
+		    <result name="sumExpenseCount2">/storehouse/inStoreExpenseSumByOption2.jsp</result>
+		     <result name="sumCount3">/storehouse/inStoreSumByOption3.jsp</result>
+		    <result name="sumExpenseCount3">/storehouse/inStoreExpenseSumByOption3.jsp</result>
+		      <result name="input">/storehouse/inStoreSum.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="outStoreSumByOption" class="com.yz.manager.storehouse.action.outStoreSumAction">
+		      <result name="input">/storehouse/outStoreSum.jsp</result>
+             <result name="sumCount">/storehouse/outStoreSumByOption.jsp</result>
+		    <result name="sumExpenseCount">/storehouse/outStoreExpenseSumByOption.jsp</result>
+		     <result name="sumCount1">/storehouse/outStoreSumByOption1.jsp</result>
+		    <result name="sumExpenseCount1">/storehouse/outStoreExpenseSumByOption1.jsp</result>
+		     <result name="sumCount2">/storehouse/outStoreSumByOption2.jsp</result>
+		    <result name="sumExpenseCount2">/storehouse/outStoreExpenseSumByOption2.jsp</result>
+		     <result name="sumCount3">/storehouse/outStoreSumByOption3.jsp</result>
+		    <result name="sumExpenseCount3">/storehouse/outStoreExpenseSumByOption3.jsp</result>
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	<action name="inSelectExportAction" class="com.yz.manager.export.inSelectExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="inSelectExportByOptionAction" class="com.yz.manager.export.inSelectExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+	<action name="outSelectExportAction" class="com.yz.manager.export.outSelectExportAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action> 
+		<action name="outSelectExportByOptionAction" class="com.yz.manager.export.outSelectExportByOptionAction">
+		    <result name="success">/exportSuccess.jsp</result>	  
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>  
+	
+	</package>
+</struts>

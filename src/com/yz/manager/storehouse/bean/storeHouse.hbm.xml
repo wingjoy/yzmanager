@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.yz.manager.storehouse.bean.storeHouse" table="storehouse">
+    
+        <id name="id" column="id" type="int">
+        	<generator class="native" />
+        </id>
+        <property name="version" type="int"/> 
+        <property name="userName" /> 
+        <property name="inDepartment" /> 
+        <property name="department" /> 
+        <property name="firstCName" /> 
+        <property name="secondCName" /> 
+        <property name="houseId" /> 
+         <property name="inDate" type="java.sql.Timestamp" /> 
+        <property name="unitPrice" />
+        <property name="totalPrice"/>
+        <property name="inContent"/>
+        <property name="unit"  /> 
+        <property name="inCount"/> 
+         <property name="inVerify"/>
+           <property name="inVerifyName"/>
+        <property name="inRemarks"/>  
+        <property name="VerifyRemarks"/>
+    </class>
+
+</hibernate-mapping>
