@@ -1,15 +1,16 @@
 package com.yz.manager.storehouse.action;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import com.yz.manager.dao.daoUtil;
 import com.yz.manager.dao.storeHouseDao;
-import com.yz.manager.storehouse.bean.*;
+import com.yz.manager.storehouse.bean.outStoreHouse;
 
 public class outStoreAction extends ActionSupport {
 
@@ -30,7 +31,15 @@ public class outStoreAction extends ActionSupport {
 	 private String purpose;
 	 private String outRemarks;
 	 private String currentCount;
-
+	 
+	 private List<outStoreHouse> outStoreHouses = new ArrayList<outStoreHouse>();
+	 
+	public List<outStoreHouse> getOutStoreHouses() {
+		return outStoreHouses;
+	}
+	public void setOutStoreHouses(List<outStoreHouse> outStoreHouses) {
+		this.outStoreHouses = outStoreHouses;
+	}
 	public String getCurrentCount() {
 		return currentCount;
 	}

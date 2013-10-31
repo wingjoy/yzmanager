@@ -31,6 +31,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>出库登记</title>
 		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" src="../js/jquery.js"></script>
         <script language="javascript">
 			var onecount1;
 			onecount1=0;
@@ -56,11 +58,8 @@
 			} 			   
 			}	
 			
-			document.myform.firstCName.length=0;
-			document.myform.firstCName.options[0]=new Option('选择物品分类','0'); 	
-			
-			document.myform.secondCName.length=0;
-			document.myform.secondCName.options[0]=new Option('选择物品','0'); 
+			$("[name='firstCName']").html("<option value='0'>选择物品分类</option>"); 	
+			$("[name='secondCName']").html("<option value='0'>选择物品</option>"); 
 			}
 			
      </script>
@@ -80,19 +79,34 @@
 		%>
 		onecount4=<%=count4%>;
 		function changelocation4(locationid){
-		document.myform.firstCName.length=0;
-		var locationid=locationid;
-		var i4;
-		document.myform.firstCName.options[0]=new Option('选择物品分类','0'); 
-		for(i4=0;i4<onecount4;i4++){
-		//if (subcat4[i4][2] == locationid) 
-		//{ 
-		document.myform.firstCName.options[document.myform.firstCName.length] = new Option(subcat4[i4][1], subcat4[i4][0]); 
-		//} 
-		} 	
-			document.myform.secondCName.length=0;
-			document.myform.secondCName.options[0]=new Option('选择物品','0'); 	   
+			var locationid=locationid;
+			var i4;
+			var selectContent  = "<option value='0'>选择物品分类</option>";
+			for(i4=0;i4<onecount4;i4++){
+				if (subcat4[i4][2] == locationid) {
+					selectContent +="<option value='"+subcat4[i4][0]+"'>"+subcat4[i4][1]+"</option>";
+					//.options[document.myform.firstCName.length] = new Option(subcat4[i4][1], subcat4[i4][0]); 
+				} 
+			} 	
+			$("[name='firstCName'").html(selectContent);
+			$("[name='secondCName']").html("<option value='0'>选择物品</option>");    
 		}
+		
+		// add by gavin for 批量出库登记
+		$(function(){
+			$(".add-new").click(function(){
+				$(this).closest("tr").before($("#recordTable .record").clone());
+			});
+			$(".icon-remove").live("click",function(){
+				$(this).closest("tr").remove();
+			});
+			$("[name='applyCount']").live("keyup",function(){
+				var $tr = $(this).closest("tr");
+				var unitPrice = $tr.find("[name='unitPrice']").val();
+				$tr.find("[name='PriceCount']").val(unitPrice*$(this).val());
+			});
+			$(".add-new").trigger("click");
+		});
 		</script>
         
         
@@ -110,17 +124,16 @@
 		}
 		%>
 		onecount=<%=count%>;
-		function changelocation(locationid){
-		document.myform.secondCName.length=0;
-		var locationid=locationid;
-		var i;
-		document.myform.secondCName.options[0]=new Option('选择物品','0'); 
-		for(i=0;i<onecount;i++){
-		if (subcat[i][2] == locationid) 
-		{ 
-		document.myform.secondCName.options[document.myform.secondCName.length] = new Option(subcat[i][1], subcat[i][0]); 
-		} 
-		} 		   
+		function changelocation(select){
+			var i;
+			var selectContent  = "<option value='0'>选择物品</option>";
+			for(i=0;i<onecount;i++){
+				if (subcat[i][2] == $(select).val()){ 
+					selectContent +="<option value='"+subcat[i][0]+"'>"+subcat[i][1]+"</option>";
+					//document.myform.secondCName.options[document.myform.secondCName.length] = new Option(subcat[i][1], subcat[i][0]); 
+				} 
+			} 
+			$(select).closest("tr").find("[name='secondCName']").html(selectContent);
 		}
 		</script>
 		
@@ -140,21 +153,46 @@
 		}
 		%>
 		onecount5=<%=count5%>;
-		function changelocation5(locationid){
-		var locationid=locationid;
+		function changelocation5(select){
 		var i5;
 		for(i5=0;i5<onecount5;i5++){
-		if (subcat5[i5][0] == locationid) 
-		{ 
-		document.myform.currentCount.value=subcat5[i5][1]; 
-		document.myform.unit.value=subcat5[i5][2]; 
-		document.myform.unitPrice.value=subcat5[i5][3]; 
-		//document.myform.PriceCount.value=parseInt(document.myform.unitPrice.value)*parseInt(document.myform.applyCount.value);
-		} 
+			if (subcat5[i5][0] == $(select).val()){ 
+				var $tr = $(select).closest("tr");
+				$("[name='currentCount']",$tr).val(subcat5[i5][1]); 
+				$("[name='unit']",$tr).val(subcat5[i5][2]); 
+				$("[name='unitPrice']",$tr).val(subcat5[i5][3]); 
+				
+			//document.myform.PriceCount.value=parseInt(document.myform.unitPrice.value)*parseInt(document.myform.applyCount.value);
+			} 
 		} 		   
 		}
 		</script>
-
+		<style type="text/css">
+			.width_50{
+				width:50px;
+			}
+			
+			.width_100{
+				width:100px;
+			}
+			
+			.red{
+				color:red !important;
+			}
+			
+			.inline{
+				white-space: nowrap;
+			}
+			
+			td{
+				vertical-align: middle !important;
+				text-align: center !important;
+			}
+			
+			.pointer{
+				cursor: pointer;
+			}
+		</style>
 	</head>
 	<body bgcolor="#E4FAF9">
 	
@@ -214,27 +252,11 @@
 			<s:token></s:token>
 			<s:hidden name="userName" value="%{#session.us.userName}"></s:hidden>
 			<s:hidden name="applyDepartment" value="%{#session.us.department}"></s:hidden>
-	
-			<table class="left-font01" align="center" border="0" cellspacing="0"
-				cellpadding="0">
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
+			
+			<table  class=" table table-striped">
 				 <tr>
-          <td align="center"> 部门库房：</td>
-             <td >
+         		 <td align="center"> 部门库房：</td>
+             	 <td >
 		                 <select  name="department" style="width:200px;" onChange="changelocation2(document.myform.department.options[document.myform.department.selectedIndex].value)" size="1"> 
 		              <option selected value="0">选择部门</option> 
 		            <% 
@@ -246,20 +268,36 @@
 				   <% }
 		           %> 
 		            </select>
-            </td>
-            <td align="center"> &nbsp;&nbsp;库房名称：</td>
-             <td > 
-             <select  name="houseId" style="width:200px;" onChange="changelocation4(document.myform.houseId.options[document.myform.houseId.selectedIndex].value)" size="1" > 
-                 <option selected value="0">选择库房</option> 
-            </select>
-            </td>
+            	</td>
+            	<td align="center"> &nbsp;&nbsp;库房名称：</td>
+             	<td > 
+	             <select  name="houseId" style="width:200px;" onChange="changelocation4(document.myform.houseId.options[document.myform.houseId.selectedIndex].value)" size="1" > 
+	                 <option selected value="0">选择库房</option> 
+	             </select>
+            	</td>
             </tr>
-            <tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
+			</table>
+	
+			<table class=" table table-striped table-bordered" align="center" border="0" cellspacing="0"
+				cellpadding="0">
+				<!-- added by gavincook for [批量出库登记] -->
 				<tr>
+					<td>物品分类</td>
+					<td>物品名称</td>
+					<td>库存数量</td>
+					<td>单价</td>
+					<td>申请数量</td>
+					<td>申请总额</td>
+					<td>部门审核</td>
+					<td>用途</td>
+					<td>备注</td>
+					<td>操作</td>
+				</tr>
+				
+				<!-- /added by gavincook for [批量出库登记] -->
+				
+				<!-- commentted by gavincook  -->
+				<%-- <tr>
 					<td align="center">
 						物品分类：
 					</td>
@@ -377,16 +415,65 @@
 					<td>
 						&nbsp;
 					</td>
-				</tr>
+				</tr> --%> <!-- commentted by gavincook  -->
 				<tr>
-					<td colspan="4" align="center">
-						<s:submit name="submit" value="提交申请"></s:submit>
-						&nbsp;&nbsp;
-						<s:reset name="reset" value="重新输入"></s:reset>
-						<br>
+					<td colspan="10" align="center">
+						<s:submit name="submit" cssClass="btn btn-primary" value="提交申请"></s:submit>
+						<s:reset name="reset" cssClass="btn btn-primary"  value="重新输入"></s:reset>
+						<input type="button" value="添加一个物品申请" class="btn btn-primary add-new">
 					</td>
 				</tr>
 			</table>
 		</s:form>
+		
+		<!-- 记录初始 -->
+		<table style="display: none;" id="recordTable">
+			<tr class="record">
+						<td>
+							<select style="width: 140px;" name="firstCName"
+								onChange="changelocation(this)"
+								size="1">
+								<option selected value="0">
+									选择物品分类
+								</option>
+							</select>
+						</td>
+						<td>
+							<select style="width: 140px;" name="secondCName" onChange="changelocation5(this)" size="1">
+								<option selected value="0">
+									选择物品
+								</option>
+							</select>
+						</td>
+						<td class="inline">
+							<input class = "width_50 red" type="text" name="currentCount" size="10" readonly/>
+							<input class = "width_50 red" type="text" name="unit" size="5" readonly/>
+						</td>
+						<td class="width_50"> 
+							<input  class = "width_50 red" type="text"  name="unitPrice" size="10" readonly/>
+						</td>
+						<td>
+							<input type="text"  name="applyCount" size="27" class="width_50"/>
+						</td>
+						<td>
+							<input type="text"  name="PriceCount" size="27" class="width_50"/>
+						</td>
+						<td>
+							 <select  name="inVerifyName" class="width_100" > 
+	                  			 <% for(user u1 :us){ %> 
+						  		 <option value="<%= u1.getUserName()%>"><%=u1.getName()%></option> 
+						   		 <% }%> 
+	            			</select>
+						</td>
+						<td>
+							<textarea name="purpose" cols="15" rows="2" class="width_100"></textarea>
+						</td>
+						<td>
+							<textarea name="outRemarks" cols="15" rows="2" class="width_100"> </textarea>
+						</td>
+						<td><i class="icon-remove pointer"></i></td>
+					</tr>
+			</table>
+		<!-- /记录初始 -->
 	</body>
 </html>
