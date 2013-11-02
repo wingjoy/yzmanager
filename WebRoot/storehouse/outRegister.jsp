@@ -54,6 +54,7 @@
 			for(i1=0;i1<onecount1;i1++){
 			if (subcat1[i1][2] == locationid) 
 			{ 
+				if(subcat1[i1][1]=="°ì¹«ÊÒ¿â·¿")
 				document.myform.houseId.options[document.myform.houseId.length] = new Option(subcat1[i1][1], subcat1[i1][0]); 
 			} 			   
 			}	
