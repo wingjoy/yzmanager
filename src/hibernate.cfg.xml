@@ -13,7 +13,7 @@
 		jdbc:mysql://localhost:3306/yzmanager?characterEncoding=UTF-8
 	</property>
 	<property name="connection.username">root</property>
-	<property name="connection.password">123456</property>
+	<property name="connection.password">8247095</property>
         <!-- JDBC connection pool (use the built-in) 
         <property name="connection.pool_size">1</property>-->
 
@@ -39,8 +39,8 @@
 
 	<!-- Drop and re-create the database schema on startup -->
 
-	<!--<property name="hbm2ddl.auto">create</property>-->
-
+	<property name="hbm2ddl.auto">update</property>
+    <!--<property name="hbm2ddl.auto">create</property>-->
 	<mapping resource="com/yz/manager/bean/user.hbm.xml" />
 	<mapping resource="com/yz/manager/archives/bean/archives.hbm.xml" />
 	<mapping resource="com/yz/manager/bean/department.hbm.xml" />
@@ -62,7 +62,7 @@
     <mapping resource="com/yz/manager/custom/bean/userArea.hbm.xml" />
     <mapping resource="com/yz/manager/custom/bean/custom.hbm.xml" />
     <mapping resource="com/yz/manager/custom/bean/customState.hbm.xml" />
-     
+    <mapping resource="com/yz/manager/upload/bean/SomeFile.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>
