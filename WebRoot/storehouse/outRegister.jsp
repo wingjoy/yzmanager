@@ -97,7 +97,7 @@
 		$(function(){
 			var i = 0;
 			$(".add-new").click(function(){
-				$(this).closest("tr").before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
+				$(this).closest("table").find(".total-price").before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
 			});
 			$(".icon-remove").live("click",function(){
 				$(this).closest("tr").remove();
@@ -110,6 +110,12 @@
 					alert("申请数量不能大于库存量.");
 				}
 				$tr.find("[name$='PriceCount']").val(unitPrice*$(this).val());
+			});
+			$("[name$='applyCount']").live("keyup",function(){
+				var $table = $(this).closest("tr");
+				var total = $table.find("[name$='PriceCount']").val();
+				
+				$tr.find("[name$='totalprice']").val();
 			});
 			$(".add-new").trigger("click");
 		});
@@ -255,9 +261,9 @@
 
 		<s:form name="myform" action="outStoreAction" method="post"
 			theme="simple">
-			<s:token></s:token>
-			<s:hidden name="userName" value="%{#session.us.userName}"></s:hidden>
-			<s:hidden name="applyDepartment" value="%{#session.us.department}"></s:hidden>
+			
+			
+			
 			
 			<table  class=" table table-striped">
 				 <tr>
@@ -294,129 +300,14 @@
 					<td>备注</td>
 					<td>操作</td>
 				</tr>
-				
-				<!-- /added by gavincook for [批量出库登记] -->
-				
-				<!-- commentted by gavincook  -->
-				<%-- <tr>
-					<td align="center">
-						物品分类：
-					</td>
-					<td>
-						<select style="width: 200px;" name="firstCName"
-							onChange="changelocation(document.myform.firstCName.options[document.myform.firstCName.selectedIndex].value)"
-							size="1">
-							<option selected value="0">
-								选择物品分类
-							</option>
-						</select>
-					</td>
-					<td align="center">
-						&nbsp;&nbsp;物品名称：
-					</td>
-					<td>
-						<select style="width: 200px;" name="secondCName" onChange="changelocation5(document.myform.secondCName.options[document.myform.secondCName.selectedIndex].value)" size="1">
-							<option selected value="0">
-								选择物品
-							</option>
-						</select>
-
-					</td>
-
+				<tr class="total-price">
+				    <td colspan="4"></td>
+				    <td>总金额</td>
+				    <td>
+				    <input type="text" name="outStoreHouses[%s].totalprice" size="27" class="width_50"/>
+				    </td>
+				    <td colspan="4"></td>
 				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						库存数量：
-					</td>
-					<td >
-						<s:textfield style='color:red' name="currentCount" size="10" readonly="true"></s:textfield>
-						<s:textfield style='color:red' name="unit" size="5" readonly="true"></s:textfield>	
-					</td>
-					
-					<td align="center">
-						单价：
-					</td>
-					<td >
-						<s:textfield style='color:red' name="unitPrice" size="10" readonly="true"></s:textfield>
-						
-					</td>
-                       <td align="center">
-						&nbsp;&nbsp;申请数量：
-					</td>
-					<td align="center">
-						<s:textfield name="applyCount" size="27"></s:textfield>
-					</td>
-					</td>
-                       <td align="center">
-						&nbsp;&nbsp;申请总金额：
-					</td>
-					<td align="center">
-						<s:textfield name="PriceCount" size="27"></s:textfield>
-					</td>
-					
-				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-			
-				<tr>
-				
-					 <td align="center">
-						&nbsp;&nbsp;部门审核：
-					</td>
-					<td > 
-             <select  name="inVerifyName" style="width:200px;"  > 
-                  <% 
-				
-					   for(user u1 :us){
-					    %> 
-					  <option value="<%= u1.getUserName()%>"><%=u1.getName()%></option> 
-				  
-				   <% }
-		           %> 
-            </select>
-            </td>
-				
-				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-				<td align="center">
-						用途：
-					</td>
-					<td colspan="3">
-						<s:textarea name="purpose" cols="30" rows="5"></s:textarea>
-					</td>
-			
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr>
-				<tr>
-				
-					<td align="center">
-						备 注：
-					</td>
-					<td colspan="3">
-						<s:textarea name="outRemarks" value="" cols="30" rows="5"></s:textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						&nbsp;
-					</td>
-				</tr> --%> <!-- commentted by gavincook  -->
 				<tr>
 					<td colspan="10" align="center">
 						<s:submit name="submit" cssClass="btn btn-primary" value="提交申请"></s:submit>
