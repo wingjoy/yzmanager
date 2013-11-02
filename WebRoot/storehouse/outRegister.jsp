@@ -54,12 +54,12 @@
 			for(i1=0;i1<onecount1;i1++){
 			if (subcat1[i1][2] == locationid) 
 			{ 
-			document.myform.houseId.options[document.myform.houseId.length] = new Option(subcat1[i1][1], subcat1[i1][0]); 
+				document.myform.houseId.options[document.myform.houseId.length] = new Option(subcat1[i1][1], subcat1[i1][0]); 
 			} 			   
 			}	
 			
-			$("[name='firstCName']").html("<option value='0'>选择物品分类</option>"); 	
-			$("[name='secondCName']").html("<option value='0'>选择物品</option>"); 
+			$("[name$='firstCName']").html("<option value='0'>选择物品分类</option>"); 	
+			$("[name$='secondCName']").html("<option value='0'>选择物品</option>"); 
 			}
 			
      </script>
@@ -88,22 +88,27 @@
 					//.options[document.myform.firstCName.length] = new Option(subcat4[i4][1], subcat4[i4][0]); 
 				} 
 			} 	
-			$("[name='firstCName'").html(selectContent);
-			$("[name='secondCName']").html("<option value='0'>选择物品</option>");    
+			$("[name$='firstCName'").html(selectContent);
+			$("[name$='secondCName']").html("<option value='0'>选择物品</option>");    
 		}
 		
 		// add by gavin for 批量出库登记
 		$(function(){
+			var i = 0;
 			$(".add-new").click(function(){
-				$(this).closest("tr").before($("#recordTable .record").clone());
+				$(this).closest("tr").before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
 			});
 			$(".icon-remove").live("click",function(){
 				$(this).closest("tr").remove();
 			});
-			$("[name='applyCount']").live("keyup",function(){
+			$("[name$='applyCount']").live("keyup",function(){
 				var $tr = $(this).closest("tr");
-				var unitPrice = $tr.find("[name='unitPrice']").val();
-				$tr.find("[name='PriceCount']").val(unitPrice*$(this).val());
+				var unitPrice = $tr.find("[name$='unitPrice']").val();
+				var currentCount = $tr.find("[name$='currentCount']").val();
+				if(parseInt($(this).val())>parseInt(currentCount)){
+					alert("申请数量不能大于库存量.");
+				}
+				$tr.find("[name$='PriceCount']").val(unitPrice*$(this).val());
 			});
 			$(".add-new").trigger("click");
 		});
@@ -133,7 +138,7 @@
 					//document.myform.secondCName.options[document.myform.secondCName.length] = new Option(subcat[i][1], subcat[i][0]); 
 				} 
 			} 
-			$(select).closest("tr").find("[name='secondCName']").html(selectContent);
+			$(select).closest("tr").find("[name$='secondCName']").html(selectContent);
 		}
 		</script>
 		
@@ -158,9 +163,9 @@
 		for(i5=0;i5<onecount5;i5++){
 			if (subcat5[i5][0] == $(select).val()){ 
 				var $tr = $(select).closest("tr");
-				$("[name='currentCount']",$tr).val(subcat5[i5][1]); 
-				$("[name='unit']",$tr).val(subcat5[i5][2]); 
-				$("[name='unitPrice']",$tr).val(subcat5[i5][3]); 
+				$("[name$='currentCount']",$tr).val(subcat5[i5][1]); 
+				$("[name$='unit']",$tr).val(subcat5[i5][2]); 
+				$("[name$='unitPrice']",$tr).val(subcat5[i5][3]); 
 				
 			//document.myform.PriceCount.value=parseInt(document.myform.unitPrice.value)*parseInt(document.myform.applyCount.value);
 			} 
@@ -259,14 +264,9 @@
              	 <td >
 		                 <select  name="department" style="width:200px;" onChange="changelocation2(document.myform.department.options[document.myform.department.selectedIndex].value)" size="1"> 
 		              <option selected value="0">选择部门</option> 
-		            <% 
-				
-					   for(department d :dp3){
-					    %> 
+		            <%for(department d :dp3){ if("办公室".equals(d.getDepartment())){%> 
 					  <option value="<%= d.getDepartmentId()%>"><%=d.getDepartment()%></option> 
-				  
-				   <% }
-		           %> 
+				    <%} }%> 
 		            </select>
             	</td>
             	<td align="center"> &nbsp;&nbsp;库房名称：</td>
@@ -430,7 +430,7 @@
 		<table style="display: none;" id="recordTable">
 			<tr class="record">
 						<td>
-							<select style="width: 140px;" name="firstCName"
+							<select style="width: 140px;" name="outStoreHouses[%s].firstCName"
 								onChange="changelocation(this)"
 								size="1">
 								<option selected value="0">
@@ -439,37 +439,37 @@
 							</select>
 						</td>
 						<td>
-							<select style="width: 140px;" name="secondCName" onChange="changelocation5(this)" size="1">
+							<select style="width: 140px;" name="outStoreHouses[%s].secondCName" onChange="changelocation5(this)" size="1">
 								<option selected value="0">
 									选择物品
 								</option>
 							</select>
 						</td>
 						<td class="inline">
-							<input class = "width_50 red" type="text" name="currentCount" size="10" readonly/>
-							<input class = "width_50 red" type="text" name="unit" size="5" readonly/>
+							<input class = "width_50 red" type="text" name="outStoreHouses[%s].currentCount" size="10" readonly/>
+							<input class = "width_50 red" type="text" name="outStoreHouses[%s].unit" size="5" readonly/>
 						</td>
 						<td class="width_50"> 
-							<input  class = "width_50 red" type="text"  name="unitPrice" size="10" readonly/>
+							<input  class = "width_50 red" type="text"  name="outStoreHouses[%s].unitPrice" size="10" readonly/>
 						</td>
 						<td>
-							<input type="text"  name="applyCount" size="27" class="width_50"/>
+							<input type="text"  name="outStoreHouses[%s].applyCount" size="27" class="width_50"/>
 						</td>
 						<td>
-							<input type="text"  name="PriceCount" size="27" class="width_50"/>
+							<input type="text"  name="outStoreHouses[%s].PriceCount" size="27" class="width_50"/>
 						</td>
 						<td>
-							 <select  name="inVerifyName" class="width_100" > 
+							 <select  name="outStoreHouses[%s].inVerifyName" class="width_100" > 
 	                  			 <% for(user u1 :us){ %> 
 						  		 <option value="<%= u1.getUserName()%>"><%=u1.getName()%></option> 
 						   		 <% }%> 
 	            			</select>
 						</td>
 						<td>
-							<textarea name="purpose" cols="15" rows="2" class="width_100"></textarea>
+							<textarea name="outStoreHouses[%s].purpose" cols="15" rows="2" class="width_100"></textarea>
 						</td>
 						<td>
-							<textarea name="outRemarks" cols="15" rows="2" class="width_100"> </textarea>
+							<textarea name="outStoreHouses[%s].outRemarks" cols="15" rows="2" class="width_100"> </textarea>
 						</td>
 						<td><i class="icon-remove pointer"></i></td>
 					</tr>

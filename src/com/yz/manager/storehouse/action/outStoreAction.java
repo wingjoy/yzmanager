@@ -1,9 +1,9 @@
 package com.yz.manager.storehouse.action;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,12 +32,12 @@ public class outStoreAction extends ActionSupport {
 	 private String outRemarks;
 	 private String currentCount;
 	 
-	 private List<outStoreHouse> outStoreHouses = new ArrayList<outStoreHouse>();
+	 private Map<String,outStoreHouse> outStoreHouses = new HashMap<String,outStoreHouse>();
 	 
-	public List<outStoreHouse> getOutStoreHouses() {
+	public Map<String, outStoreHouse> getOutStoreHouses() {
 		return outStoreHouses;
 	}
-	public void setOutStoreHouses(List<outStoreHouse> outStoreHouses) {
+	public void setOutStoreHouses(Map<String, outStoreHouse> outStoreHouses) {
 		this.outStoreHouses = outStoreHouses;
 	}
 	public String getCurrentCount() {
@@ -131,8 +131,21 @@ public class outStoreAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {	
-
-		    outStoreHouse osh=new outStoreHouse();
+			for(String key:outStoreHouses.keySet()){
+				outStoreHouse osh = outStoreHouses.get(key);
+				osh.setUserName(this.getUserName());
+				osh.setApplyDepartment(this.getApplyDepartment());
+				Date date=new Date();
+				osh.setApplyDate(new Timestamp(date.getTime()));	
+				osh.setOutVerify(0);
+				osh.setHouseVerifyName("0");
+				osh.setHouseManager("0");
+				osh.setDepartment(getDepartment());
+				osh.setHouseId(getHouseId());
+				this.setInVerifyName(osh.getInVerifyName());
+				storeHouseDao.addOutStore(osh);
+			}
+		    /*outStoreHouse osh=new outStoreHouse();
 		    osh.setUserName(this.getUserName());
 		    osh.setApplyDepartment(this.getApplyDepartment());
 		    osh.setDepartment(this.getDepartment());
@@ -151,12 +164,13 @@ public class outStoreAction extends ActionSupport {
 			osh.setHouseVerifyName("0");
 			osh.setHouseManager("0");
 			storeHouseDao.addOutStore(osh);
-	        this.addActionMessage("出库登记成功，等待部门领导["+daoUtil.selectUser(this.getInVerifyName())+"]审核");
+	        this.addActionMessage("出库登记成功，等待部门领导["+daoUtil.selectUser(this.getInVerifyName())+"]审核");*/
+			this.addActionMessage("出库登记成功，等待部门领导["+daoUtil.selectUser(this.getInVerifyName())+"]审核");
 	        return SUCCESS;
 	     
 	}
 	@Override
-	public void validate() {
+	public void validate() {/*
 		if("0".equals(this.getDepartment())){
 			this.addFieldError("departmentnull", "库房部门不能为空");
 		}
@@ -185,5 +199,5 @@ public class outStoreAction extends ActionSupport {
 		}else if(Integer.valueOf(this.getApplyCount()).intValue()>Integer.valueOf(this.getCurrentCount()).intValue()){
 			this.addFieldError("kucunbugou", "库存不够，请重新选择或与库房管理员联系");
 		}
-	}
+	*/}
 }
