@@ -11,17 +11,14 @@
     <include file="expense_struts.xml"></include>
     <include file="store_struts.xml"></include>
     <include file="custom_struts.xml"></include>
+    <include file="fileUpload.xml"></include>
 	<package name="struts2" extends="struts-default">
 	<global-results>
 		<result name="globalException">/exception.jsp</result>
 	</global-results>
 		<global-exception-mappings>
-			<exception-mapping result="globalException" exception="java.lang.Exception"></exception-mapping> 
-			<exception-mapping result="globalException" exception="java.sql.SQLException"> </exception-mapping>
-			
-			
+			<exception-mapping result="globalException" exception="java.lang.Exception">exception.jsp</exception-mapping> 
+			<exception-mapping result="globalException" exception="java.sql.SQLException">exportSuccess.jsp</exception-mapping>		
         </global-exception-mappings>
-	
 	</package>
-
 </struts>

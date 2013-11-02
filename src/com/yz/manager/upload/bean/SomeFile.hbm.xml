@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.yz.manager.upload.bean.SomeFile" table="somefile">
+    
+        <id name="id" column="id" type="java.lang.Integer">
+        	<generator class="native" />
+        </id>
+         <property name="userName" column="userName" type="java.lang.String"/> 
+         <property name="fileName" column="fileName" type="java.lang.String"/> 
+         <property name="filePath" column="filePath" type="java.lang.String"/> 
+         <property name="comment" column="comment" type="java.lang.String"/> 
+    </class>
+
+</hibernate-mapping>
