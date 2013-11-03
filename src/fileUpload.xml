@@ -8,9 +8,9 @@
 	 <constant name="struts.multipart.saveDir" value="/tempFolder"></constant>  
 	<package name="strutsfile" extends="struts-default" namespace="/">
 		<action name="fileUpload_*" class="com.yz.manager.action.UploadAction" method="{1}">
-			<result name="uploadSuccess" type="redirectAction">/uploadfile/upload.jsp</result>
-			<result name="uploadFiled" type="redirectAction">/uploadfile/upload.jsp</result>
-			<result name="listSuccess" type="redirectAction">/uploadfile/filelist.jsp</result>
+			<result name="uploadSuccess" >/uploadfile/upload.jsp</result>
+			<result name="uploadFiled" >/uploadfile/upload.jsp</result>
+			<result name="listSuccess">/uploadfile/filelist.jsp</result>
 			<result name="input" >/uploadfile/upload.jsp</result>
 		</action>
 	</package>

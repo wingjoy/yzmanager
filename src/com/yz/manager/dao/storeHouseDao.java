@@ -1,7 +1,10 @@
 package com.yz.manager.dao;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -9,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import com.yz.manager.bean.secondClass;
 import com.yz.manager.date.CurrentDate;
@@ -171,6 +175,20 @@ public class storeHouseDao {
 				return ep;
 		 }
 		 @SuppressWarnings("unchecked")
+			public static List<Map> selectVerifyStoreAsMap(String name,int currentPage,int pageSize){
+		 		 
+				    Session session=null;	
+			        try {	      
+			        	session=HibernateSessionFactory.getSession();
+			        	return session.createSQLQuery("select userName from  storehouse where inVerify=0 and inVerifyName=? group by userName limit "+(currentPage-1)*pageSize+","+pageSize)
+			        	       .setString(0, name).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP).list();
+						} catch (HibernateException e) {			
+						throw e;			
+					}finally{
+						if(session.isOpen()) session.close();
+					}
+			 }
+		 @SuppressWarnings("unchecked")
 			public static List<outStoreHouse> selectVerifyOutStore(String userName,int currentPage,int pageSize){
 		 		 
 				    Session session=null;	
@@ -191,7 +209,6 @@ public class storeHouseDao {
 					}
 					return ep;
 			 }
-		 @SuppressWarnings("unchecked")
 			public static storeHouse selectHouse(String aId){
 		 		 
 				    Session session=null;	
@@ -206,6 +223,27 @@ public class storeHouseDao {
 					}
 					return ps;
 			 }
+		 
+			@SuppressWarnings("unchecked")
+			public static List<storeHouse> selectHouseForUser(String verifyName,String applyName){
+				 Session session=null;	
+				    List<storeHouse> ep=new ArrayList<storeHouse>();			    
+			        try {	      
+			        	session=HibernateSessionFactory.getSession();		       
+			        	Criteria criteria=session.createCriteria(storeHouse.class);				
+						criteria.add(Restrictions.eq("inVerifyName", verifyName));
+						criteria.add(Restrictions.eq("userName", applyName));
+						criteria.add(Restrictions.eq("inVerify", 0));
+						criteria.addOrder(Order.desc("inDate"));
+					    ep=(List<storeHouse>)criteria.list();					    
+						} catch (HibernateException e) {			
+						throw e;			
+					}finally{
+						if(session.isOpen()) session.close();
+					}
+					return ep;
+			 }
+		 
 		 @SuppressWarnings("unchecked")
 			public static outStoreHouse selectOutHouse(String aId){
 		 		 

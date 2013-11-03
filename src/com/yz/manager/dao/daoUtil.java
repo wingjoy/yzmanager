@@ -3701,7 +3701,11 @@ public class daoUtil {
 					        try {	      
 					        	session=HibernateSessionFactory.getSession();
 								sc=(secondClass)session.get(secondClass.class,Integer.valueOf(sId).intValue());
-								fcn=sc.getSecondCName();	    
+								if(sc==null){
+									fcn = "";
+								}else{
+									fcn=sc.getSecondCName();	    
+								}
 								} catch (HibernateException e) {			
 								throw e;			
 							}finally{
@@ -4170,7 +4174,11 @@ public class daoUtil {
 		        try {	      
 		        	session=HibernateSessionFactory.getSession();									
 		        	firstClass s=(firstClass)session.get(firstClass.class, sId);	
-		        	fcn=s.getFirstCName();
+		        	if(s==null){
+		        		fcn="";
+		        	}else{
+		        		fcn=s.getFirstCName();
+		        	}
 					}catch (HibernateException e) {
 						if(tx!=null)tx.rollback();
 						throw e;			
