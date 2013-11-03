@@ -2,6 +2,8 @@ package com.yz.manager.storehouse.action;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +33,14 @@ public class inStoreAction extends ActionSupport {
 	 private String inCount;
 	 private String inVerifyName;
 	 private String inRemarks;
+	 private Map<String,storeHouse> storeHouses = new HashMap<String,storeHouse>();
 
+	public Map<String, storeHouse> getStoreHouses() {
+		return storeHouses;
+	}
+	public void setStoreHouses(Map<String, storeHouse> storeHouses) {
+		this.storeHouses = storeHouses;
+	}
 	public String getInDepartment() {
 		return inDepartment;
 	}
@@ -130,7 +139,20 @@ public class inStoreAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {	
 
-			storeHouse sh=new storeHouse();
+		for(String key:storeHouses.keySet()){
+			storeHouse sh = storeHouses.get(key);
+			sh.setUserName(this.getUserName());
+		    sh.setDepartment(this.getDepartment());
+		    sh.setInDepartment(this.getInDepartment());
+		    sh.setHouseId(this.getHouseId());
+		    sh.setInVerify(0);
+		    Date date=new Date();
+			sh.setInDate(new Timestamp(date.getTime()));	
+			storeHouseDao.addStoreHouse1(sh);
+			setInVerifyName(sh.getInVerifyName());
+	       // this.addActionMessage("入库登记成功，等待["+daoUtil.selectUser(this.getInVerifyName())+"]审核");
+		}
+			/*storeHouse sh=new storeHouse();
 		    sh.setUserName(this.getUserName());
 		    sh.setDepartment(this.getDepartment());
 		    sh.setInDepartment(this.getInDepartment());
@@ -148,13 +170,14 @@ public class inStoreAction extends ActionSupport {
 			sh.setInVerifyName(this.getInVerifyName());
 			sh.setInVerify(0);
 			
-			storeHouseDao.addStoreHouse1(sh);
+			storeHouseDao.addStoreHouse1(sh);*/
 	        this.addActionMessage("入库登记成功，等待["+daoUtil.selectUser(this.getInVerifyName())+"]审核");
 	        return SUCCESS;
 	     
 	}
 	@Override
 	public void validate() {
+		/**
 		if("0".equals(this.getDepartment())){
 			this.addFieldError("departmentnull", "库房部门不能为空");
 		}
@@ -182,6 +205,7 @@ public class inStoreAction extends ActionSupport {
 					if(!(Double.valueOf(this.getUnitPrice().trim()).doubleValue()*Integer.valueOf(this.getInCount().trim()).intValue()
 							==Double.valueOf(this.getTotalPrice().trim()).doubleValue())){
 						this.addFieldError("total", "总价输入不正确，应该为"+Double.valueOf(this.getUnitPrice().trim()).doubleValue()*Integer.valueOf(this.getInCount().trim()).intValue());
-					}
+					}**/
 	}
+	
 }

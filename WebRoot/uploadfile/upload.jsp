@@ -93,5 +93,6 @@
 		<!-- 添加文件栏目记录结束 -->
 	</div>
 	<input type="button" onclick="window.location.href='fileUpload!list.action'" value="查看文件列表">
+	<s:debug></s:debug>
 </body>
 </html>

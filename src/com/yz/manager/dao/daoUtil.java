@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -382,8 +383,9 @@ public class daoUtil {
 			}
 	 }
 
-	 public static void addfirstClass(firstClass fc){
+	 public static Integer addfirstClass(firstClass fc){
  		 
+		 Integer f = null;
 		    Session session=null;
 	        Transaction tx=null;	    
 	        try {
@@ -391,7 +393,7 @@ public class daoUtil {
 				session=HibernateSessionFactory.getSession();
 			
 				tx=session.beginTransaction();				
-				session.save(fc);				
+				f = (Integer) session.save(fc);				
 				tx.commit();			
 			} catch (HibernateException e) {
 				if(tx!=null)tx.rollback();
@@ -399,6 +401,7 @@ public class daoUtil {
 			}finally{
 				if(session.isOpen()) session.close();
 			}
+	        return f;
 	 }
 	 public static void addGCompany(gCompany g){
  		 
@@ -553,8 +556,8 @@ public class daoUtil {
 				if(session.isOpen()) session.close();
 			}
 	 }
-	 public static void addsecondClass(secondClass sc){
- 		 
+	 public static Integer addsecondClass(secondClass sc){
+		 Integer s = null;
 		    Session session=null;
 	        Transaction tx=null;	    
 	        try {
@@ -562,7 +565,7 @@ public class daoUtil {
 				session=HibernateSessionFactory.getSession();
 			
 				tx=session.beginTransaction();				
-				session.save(sc);				
+				s = (Integer) session.save(sc);				
 				tx.commit();			
 			} catch (HibernateException e) {
 				if(tx!=null)tx.rollback();
@@ -570,6 +573,7 @@ public class daoUtil {
 			}finally{
 				if(session.isOpen()) session.close();
 			}
+	        return s;
 	 }
 	 
 	 
@@ -726,6 +730,24 @@ public class daoUtil {
 				        try {	      
 				        	session=HibernateSessionFactory.getSession();
 							Criteria criteria=session.createCriteria(shouse.class);			
+						    s=(List<shouse>)criteria.list();					    
+							} catch (HibernateException e) {			
+							throw e;			
+						}finally{
+							if(session.isOpen()) session.close();
+						}
+						return s;
+				 }
+				
+				@SuppressWarnings("unchecked")
+				public static List<shouse> selectShouseByDepartmentId(String department){
+			 		 
+					    Session session=null;	
+					    List<shouse> s=new ArrayList<shouse>();			   
+				        try {	      
+				        	session=HibernateSessionFactory.getSession();
+							Criteria criteria=session.createCriteria(shouse.class);	
+							criteria.add(Restrictions.eq("department", department));
 						    s=(List<shouse>)criteria.list();					    
 							} catch (HibernateException e) {			
 							throw e;			
@@ -1374,6 +1396,27 @@ public class daoUtil {
 				return dp;
 		 } 
 		
+		@SuppressWarnings("unchecked")
+		public static department selectHaveHouseDepartmentByName(String name){
+	 		 
+			    Session session=null;				  
+			    List<department> dp=new ArrayList<department>();
+		        try {	      
+		        	session=HibernateSessionFactory.getSession();
+					Criteria criteria=session.createCriteria(department.class);	
+					criteria.add(Restrictions.eq("haveHouse",true));
+					criteria.add(Restrictions.eq("department",name));	
+				    dp=(List<department>)criteria.list();					   
+					} catch (HibernateException e) {			
+					throw e;			
+				}finally{
+					if(session.isOpen()) session.close();
+				}
+		        if(dp.size()>0)
+		        	return dp.get(0);
+		        else
+		        	return null;
+		 } 
 		 @SuppressWarnings("unchecked")
 			public static String selectDepartment3(int dpId){
 		 		 
@@ -2647,7 +2690,7 @@ public class daoUtil {
 							return fc;
 					 }
 				 @SuppressWarnings("unchecked")
-					public static List<firstClass> selectAllHouseFirstClass2(){
+					public static List<firstClass> selectAllHouseFirstClass2ForHouseId(String houseId){
 				 		 
 						    Session session=null;	
 						    List<firstClass> fc=new ArrayList<firstClass>();			    
@@ -2655,8 +2698,8 @@ public class daoUtil {
 					        	session=HibernateSessionFactory.getSession();
 								Criteria criteria=session.createCriteria(firstClass.class);	
 								criteria.add(Restrictions.eq("systemName", "0"));
+								criteria.add(Restrictions.eq("houseId", houseId));
 								criteria.addOrder(Order.asc("department"));
-								criteria.addOrder(Order.asc("houseId"));
 							    fc=(List<firstClass>)criteria.list();					    
 								} catch (HibernateException e) {			
 								throw e;			
@@ -2665,6 +2708,26 @@ public class daoUtil {
 							}
 							return fc;
 					 }
+					
+					 @SuppressWarnings("unchecked")
+						public static List<firstClass> selectAllHouseFirstClass2(){
+					 		 
+							    Session session=null;	
+							    List<firstClass> fc=new ArrayList<firstClass>();			    
+						        try {	      
+						        	session=HibernateSessionFactory.getSession();
+									Criteria criteria=session.createCriteria(firstClass.class);	
+									criteria.add(Restrictions.eq("systemName", "0"));
+									criteria.addOrder(Order.asc("department"));
+									criteria.addOrder(Order.asc("houseId"));
+								    fc=(List<firstClass>)criteria.list();					    
+									} catch (HibernateException e) {			
+									throw e;			
+								}finally{
+									if(session.isOpen()) session.close();
+								}
+								return fc;
+						 }
 			 @SuppressWarnings("unchecked")
 				public static List<firstClass> selectFirstClass2(String dp,int currentPage,int pageSize){
 			 		 
@@ -2944,6 +3007,27 @@ public class daoUtil {
 						criteria.addOrder(Order.desc("department"));
 						criteria.addOrder(Order.asc("houseId"));
 						criteria.addOrder(Order.asc("firstCName"));
+					    sc=(List<secondClass>)criteria.list();					    
+						} catch (HibernateException e) {			
+						throw e;			
+					}finally{
+						if(session.isOpen()) session.close();
+					}
+					return sc;
+			 }
+			
+			@SuppressWarnings("unchecked")
+			public static List<secondClass> selectAllHouseSecondClassForFirstClass(String firstCName){
+		 		 
+				    Session session=null;	
+				    List<secondClass> sc=new ArrayList<secondClass>();			    
+			        try {	      
+			        	session=HibernateSessionFactory.getSession();
+						Criteria criteria=session.createCriteria(secondClass.class);
+						criteria.add(Restrictions.eq("systemName","0"));
+						criteria.add(Restrictions.eq("firstCName", firstCName));
+						criteria.addOrder(Order.desc("department"));
+						criteria.addOrder(Order.asc("houseId"));
 					    sc=(List<secondClass>)criteria.list();					    
 						} catch (HibernateException e) {			
 						throw e;			

@@ -5,7 +5,8 @@
  
 <struts>
    
-	<constant name="struts.i18n.encoding" value="utf-8"/>	
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
 	<include file="personal_struts.xml"></include>
 	<include file="archive_other_struts.xml"></include>
     <include file="expense_struts.xml"></include>
