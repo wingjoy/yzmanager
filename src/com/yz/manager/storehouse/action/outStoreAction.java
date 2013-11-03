@@ -142,6 +142,7 @@ public class outStoreAction extends ActionSupport {
 				osh.setHouseManager("0");
 				osh.setDepartment(getDepartment());
 				osh.setHouseId(getHouseId());
+				osh.setNextVerifyName(osh.getInVerifyName());
 				this.setInVerifyName(osh.getInVerifyName());
 				storeHouseDao.addOutStore(osh);
 			}

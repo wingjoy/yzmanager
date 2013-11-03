@@ -22,8 +22,9 @@
 		List<outStoreHouse> pss = new ArrayList<outStoreHouse>();
 		outStoreHouse ps = new outStoreHouse();
 		String aId = (String) request.getParameter("aId");
+		String[] aIds = null;
 		if (aId != null) {
-			String[] aIds = aId.split("/");
+			aIds = aId.split("/");
 			for (int i = 0; i < aIds.length; i++) {
 				pss.add(storeHouseDao.selectOutHouse(aIds[i]));
 			}
@@ -69,7 +70,7 @@
 		}
 	%>
 	<s:form action="verifyOutStoreAction" method="post" theme="simple">
-		<table class="actionmessage" align="center">
+		<table class="actionmessage" align="center" border="0">
 			<tr>
 				<td>&nbsp; <s:actionmessage />
 				</td>
@@ -82,6 +83,8 @@
 					</s:fielderror></td>
 			</tr>
 
+			<!-- 传递所有出库id -->
+			<input type="hidden" name="aId" value=<%=aId %> style="width:0; height:0" />
 		</table>
 		<table class="left-font01" width="90%" align="center" border="1"
 			cellspacing="0" cellpadding="0">
@@ -110,11 +113,11 @@
 				<td align="center">备注</td>
 			</tr>
 		<%
-			for(int i=0; i<fc.size(); i++) {			
+			for(int i=0; i<fc.size(); i++) {		
 		%>
 			<tr height="25">
 				<td><%=fc.get(i)%>--<%=sc.get(i) %></td>
-				<td>&nbsp;<input type="text" name="applyCount" value=<%=applyCount.get(i)%> style="width:20%;" /> <%=unit.get(i) %></td>
+				<td>&nbsp;<input type="text" name=<%=aIds[i] %> value=<%=applyCount.get(i)%> style="width:20%;" /> <%=unit.get(i) %></td>
 				<td><%=purpose.get(i)%></td>
 				<td><%=remarks.get(i)%></td>
 			</tr>
@@ -167,7 +170,7 @@
 					} else {
 							out.println("<td align='center' style='color:red' colspan='3'> 请联系物品领用人进行出库业务处理</td>");
 				%>
-				<td><s:hidden name="nextVerifyName"
+				<td>&nbsp;<s:hidden name="nextVerifyName"
 						value="%{#request.ps.nextVerifyName}"></s:hidden></td>
 			</tr>
 			<%
