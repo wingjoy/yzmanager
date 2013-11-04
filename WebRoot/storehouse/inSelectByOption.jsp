@@ -10,6 +10,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
+	  String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
       user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
@@ -35,6 +36,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -217,6 +219,7 @@
 	        sh=storeHouseDao.selectMyStoreByOption(dp2,dp1,sh2,fc1,sc1,sdb1,sde1,Integer.valueOf(inVerify).intValue(),vnm,in,currentPage,pg.getPagesize());
          }
   %>   
+  
   <s:form name="myform" action="inSelectByOption?currentPage=1" method="post" theme="simple" >
       <table  class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
         <tr><td><s:hidden name="inVerify" value="%{#request.inVerify}"/></td></tr>
@@ -321,8 +324,8 @@
            	  <struts:datetimepicker  cssStyle="width:100px;" name="addDateBegin" displayFormat="yyyy-MM-dd"  />                       
                 到<struts:datetimepicker cssStyle="width:100px;" name="addDateEnd" displayFormat="yyyy-MM-dd"  />                         
            </td> 
-            <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查  找"></s:submit>                                
-         &nbsp;<a class="left-font01" href="inSelectExportByOptionAction.action">入库导出</a></td>   
+            <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" cssClass="btn btn-primary" value="查  找"></s:submit>                                
+         &nbsp;<!-- <a class="left-font01" href="inSelectExportByOptionAction.action">入库导出</a> --></td>   
       </tr>
           <tr>
 					<td>
@@ -332,7 +335,7 @@
         </table>
       </s:form>
   
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
                  int totalCount=0;
@@ -340,7 +343,7 @@
                 DecimalFormat dr=new DecimalFormat();
                 dr.setMaximumFractionDigits(2);
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr height='23'>"+
 		              "<th>序号</th><th>添加日期</th><th>入库人</th><th>库房</th><th>物品分类</th><th>物品名称</th><th>规格</th><th>单价</th><th>数量</th><th>单位</th><th>总价</th><th>审核人</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );

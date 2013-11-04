@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 	<link href="css/css.css" rel="stylesheet" type="text/css" />
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <SCRIPT language=JavaScript>
 function tupian(idt){

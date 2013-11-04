@@ -9,6 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
       user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
@@ -27,7 +28,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -250,35 +251,35 @@
           <%
             if("0".equals(inVerify)){
              out.println(
-               "<td><a target='main' class='left-font01' style='color : red' href='myInStore.jsp?inVerify=0&currentPage=1'>未审核</a></td>"+
+               "<td><a target='main' class='left-font01' style='color : red' href='"+basepath+"storehouse/myInStore.jsp?inVerify=0&currentPage=1'>未审核</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }else{
                out.println(
-               "<td><a target='main' class='left-font01'  href='myInStore.jsp?inVerify=0&currentPage=1'>未审核</a></td>"+
+               "<td><a target='main' class='left-font01'  href='"+basepath+"storehouse/myInStore.jsp?inVerify=0&currentPage=1'>未审核</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }
             
             if("1".equals(inVerify)){
              out.println(
-               "<td><a target='main' class='left-font01' style='color : red' href='myInStore.jsp?inVerify=1&currentPage=1'>审核通过</a></td>"+
+               "<td><a target='main' class='left-font01' style='color : red' href='"+basepath+"storehouse/myInStore.jsp?inVerify=1&currentPage=1'>审核通过</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }else{
                out.println(
-               "<td><a target='main' class='left-font01'  href='myInStore.jsp?inVerify=1&currentPage=1'>审核通过</a></td>"+
+               "<td><a target='main' class='left-font01'  href='"+basepath+"storehouse/myInStore.jsp?inVerify=1&currentPage=1'>审核通过</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }
              if("2".equals(inVerify)){
              out.println(
-               "<td><a target='main' class='left-font01' style='color : red' href='myInStore.jsp?inVerify=2&currentPage=1'>审核未通过</a></td>"+
+               "<td><a target='main' class='left-font01' style='color : red' href='"+basepath+"storehouse/myInStore.jsp?inVerify=2&currentPage=1'>审核未通过</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }else{
                out.println(
-               "<td><a target='main' class='left-font01'  href='myInStore.jsp?inVerify=2&currentPage=1'>审核未通过</a></td>"+
+               "<td><a target='main' class='left-font01'  href='"+basepath+"storehouse/myInStore.jsp?inVerify=2&currentPage=1'>审核未通过</a></td>"+
                "<td>&nbsp;&nbsp;&nbsp;&nbsp;</td> "
              );
             }

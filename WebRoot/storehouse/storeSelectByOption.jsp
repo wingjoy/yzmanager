@@ -9,7 +9,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
-      user user=(user)session.getAttribute("us");
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
+	user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
       List<shouse> sh1=new ArrayList<shouse>();
@@ -26,6 +27,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -206,7 +208,7 @@
 						</select>
 
 					</td>
-               <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查  找"></s:submit>  </td>                     
+               <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" cssClass="btn btn-primary" value="查  找"></s:submit>  </td>                     
 				</tr>
               <tr>
 					<td>
@@ -216,11 +218,11 @@
         </table>
       </s:form>
        
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr height='23' >"+
 		              "<th>序号</th><th>部门</th><th>库房</th><th>物品分类</th><th>物品名称</th><th>单价</th><th>入库数量</th><th>现存数量</th><th>出库数量</th><th>单位</th>"+"</tr>" );
 		            int k=1;;
 		            for(secondClass e : sh){
