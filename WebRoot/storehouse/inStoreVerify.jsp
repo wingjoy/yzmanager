@@ -11,6 +11,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>»Îø‚…Û∫À</title>
 </head>
@@ -30,11 +31,11 @@
         <tr><td align="center"> <s:actionmessage></s:actionmessage></td></tr>
      </table>   
        
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr height='23' >"+
 		             "<th>–Ú∫≈</th><th>»Îø‚»À</th><th>…Û∫À</th>"+
 		             "</tr>"
 		            );

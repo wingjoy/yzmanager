@@ -280,8 +280,8 @@
            	  <struts:datetimepicker  cssStyle="width:100px;" name="addDateBegin" displayFormat="yyyy-MM-dd"  />                       
                 到<struts:datetimepicker cssStyle="width:100px;" name="addDateEnd" displayFormat="yyyy-MM-dd"  />                         
            </td> 
-            <td align="center"> &nbsp;&nbsp;<s:submit id="submit" style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td>
-             &nbsp;<a class="left-font01 export" href="javascript:void(0)">出库导出</a></td>                               
+            <td align="center"> &nbsp;&nbsp;<s:submit id="submit" cssClass="btn btn-primary" style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td>
+             &nbsp;<a class="left-font01 export btn btn-primary" href="javascript:void(0)">出库导出</a></td>                               
       </tr>
           <tr>
 					<td>
@@ -291,11 +291,11 @@
         </table>
       </s:form>
  
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr height='23'>"+
 		              "<th>序号</th><th>出库日期</th><th>领用部门</th><th>领用人</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>出库数量</th><th>单位</th><th>部门审核人</th><th>库房审核人</th><th>库管员</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );

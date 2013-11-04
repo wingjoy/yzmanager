@@ -49,6 +49,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>出库登记</title>
 		<link href="../css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <script language="javascript">
 			var onecount1;
 			onecount1=0;
@@ -554,9 +555,9 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-						<s:submit name="submit" value="提交申请"></s:submit>
+						<s:submit name="submit" cssClass="btn btn-primary" value="提交申请"></s:submit>
 						&nbsp;&nbsp;
-						<s:reset name="reset" value="重新输入"></s:reset>
+						<s:reset name="reset" cssClass="btn btn-primary" value="重新输入"></s:reset>
 						<br>
 					</td>
 				</tr>

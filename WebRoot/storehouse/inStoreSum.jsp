@@ -54,6 +54,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>月度数量汇总</title>
 	<link href="../css/css.css" rel="stylesheet" type="text/css" />
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	 <script language="javascript">
 			var onecount7;
 			onecount7=0;
@@ -311,7 +312,7 @@
 						费用
 					</td>
 		
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查 找"></s:submit>  </td>                     
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" cssClass="btn btn-primary" value="查 找"></s:submit>  </td>                     
          </tr>
          <tr>
       	<td>
@@ -321,8 +322,8 @@
         </table>
       </s:form>
      
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
-          <tr height='25' class="tableth" bgcolor="#8E8EFF" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+          <tr height='25' >
           <th align="center">入库部门</th><th align="center">库房</th><th align="center">物品分类</th><th align="center">物品名称</th><th align="center">1月</th><th align="center">2月</th><th align="center">3月</th><th align="center">4月</th><th align="center">5月</th><th align="center">6月</th><th align="center">7月</th><th align="center">8月</th><th align="center">9月</th><th align="center">10月</th><th align="center">11月</th><th align="center">12月</th><th align="center">入库数量合计</th>
           </tr>
           <%     

@@ -12,6 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>费用详情</title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body bgcolor="#E4FAF9">
  <%
@@ -76,7 +77,7 @@
         <tr><td><a class="left-font01" href='javascript:history.go(-1);'>返回</a></td></tr>
             <tr><td>&nbsp;</td></tr>
        </table>
-       <table class="left-font01" width="80%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="80%"  align="center" border="1" cellspacing="0" cellpadding="0" >
             
           <tr height="25">
               <td align="center" width="15%">申请日期</td><td width="35%">&nbsp;<%= CurrentDate.parseDate4(ps.getApplyDate().toString()) %></td><td width="15%" align="center">申请部门</td><td width="35%">&nbsp;<%= sgd%></td>

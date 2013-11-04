@@ -11,6 +11,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>出库审核</title>
 </head>
@@ -39,14 +40,14 @@
 		</tr>
 	</table>
 
-	<table class="left-font01" width="100%" align="center" border="1"
+	<table class="table table-bordered" width="100%" align="center" border="1"
 		cellspacing="0" cellpadding="0">
 
 		<%
 			/* out.println("<tr height='23' class='tableth'bgcolor='#8E8EFF'>"
 					+ "<th>序号</th><th>申请日期</th><th>领用部门</th><th>领用人</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>申请数量</th><th>单位</th><th>审核</th>"
 					+ "</tr>"); */
-			out.println("<tr height='23' class='tableth'bgcolor='#8E8EFF'>"
+			out.println("<tr height='23'>"
 					+ "<th>序号</th><th>领用人</th><th>审核</th>"
 					+ "</tr>");
 			int k = 1;

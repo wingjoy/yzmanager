@@ -28,6 +28,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <struts:head />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -215,7 +216,7 @@
            	  <struts:datetimepicker  cssStyle="width:100px;" name="addDateBegin" displayFormat="yyyy-MM-dd"  />                       
                 到<struts:datetimepicker cssStyle="width:100px;" name="addDateEnd" displayFormat="yyyy-MM-dd"  />                         
            </td>            
-              <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查  找"></s:submit>  </td>                     
+              <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" cssClass="btn btn-primary" name="submit" value="查  找"></s:submit>  </td>                     
          </tr>
           <tr>
 					<td>
@@ -269,11 +270,11 @@
         </table>
     
      
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr>"+
 		              "<th>序号</th><th>添加日期</th><th>库房</th><th>物品分类</th><th>物品名称</th><th>规格</th><th>单价</th><th>数量</th><th>单位</th><th>总价</th><th>审核人</th><th>状态</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );
