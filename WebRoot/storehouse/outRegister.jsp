@@ -97,7 +97,7 @@
 		$(function(){
 			var i = 0;
 			$(".add-new").click(function(){
-				$(this).closest("tr").before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
+				$(this).closest("tr").prev().before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
 			});
 			$(".icon-remove").live("click",function(){
 				$(this).closest("tr").remove();
@@ -108,8 +108,16 @@
 				var currentCount = $tr.find("[name$='currentCount']").val();
 				if(parseInt($(this).val())>parseInt(currentCount)){
 					alert("申请数量不能大于库存量.");
+					$(this).val("");
+					$tr.find("[name$='PriceCount']").val("");
+					return false;
 				}
 				$tr.find("[name$='PriceCount']").val(unitPrice*$(this).val());
+				var totalPrice = 0;
+				$("[name$='PriceCount']").each(function(index,e){
+					totalPrice+=+($(e).val());
+				});
+				$(".total-price").html(totalPrice);
 			});
 			$(".add-new").trigger("click");
 		});
@@ -197,6 +205,16 @@
 			
 			.pointer{
 				cursor: pointer;
+			}
+			
+			.right{
+				text-align: right;
+				padding: 0 10px;
+			}
+			
+			.left{
+				text-align: left;
+				padding: 0 10px;
 			}
 		</style>
 	</head>
@@ -417,6 +435,10 @@
 						&nbsp;
 					</td>
 				</tr> --%> <!-- commentted by gavincook  -->
+				<tr>
+					<td colspan="5"><div class="right red">总金额</div></td>
+					<td colspan="5"><div class="left red total-price"></div></td>
+				</tr>
 				<tr>
 					<td colspan="10" align="center">
 						<s:submit name="submit" cssClass="btn btn-primary" value="提交申请"></s:submit>

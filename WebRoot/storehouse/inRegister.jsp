@@ -98,7 +98,7 @@
 		$(function(){
 			var i = 0;
 			$(".add-new").click(function(){
-				$(this).closest("tr").before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
+				$(this).closest("tr").prev().before($("#recordTable .record")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
 			});
 			$(".add-new-file").click(function(){
 				$(this).closest("tr").before($("#fileTable .fileRecord")[0].outerHTML.replace(/%s/g,"'record"+(i++)+"'"));
@@ -111,6 +111,25 @@
 			});
 			$(".add-new").trigger("click");
 			$(".add-new-file").trigger("click");
+			var reg = /^(\d+(\.\d*)?)?$/;
+			$("[name$='inCount'],[name$='unitPrice']").live("keyup",function(){
+				var v = $(this).val();
+				if(!reg.test(v)){
+					alert("请输入数字");
+					return false;
+				}
+				var $tr = $(this).closest("tr");
+				var inCount = $tr.find("[name$='inCount']").val();
+				var unitPrice = $tr.find("[name$='unitPrice']").val();
+				if(reg.test(inCount)&&reg.test(unitPrice)){
+					$tr.find("[name$='totalPrice']").val(inCount*unitPrice);
+					var totalPrice = 0;
+					$("[name$='totalPrice']").each(function(index,e){
+						totalPrice+= +$(e).val();
+					});
+					$(".total-price").html(totalPrice+"元");
+				}
+			});
 		});
 		</script>
         
@@ -166,6 +185,16 @@
 			
 			.pointer{
 				cursor: pointer;
+			}
+			
+			.right{
+				text-align: right;
+				padding: 0 10px;
+			}
+			
+			.left{
+				text-align: left;
+				padding: 0 10px;
 			}
 		</style>
 </head>
@@ -259,6 +288,10 @@
 				<td>备注</td>
 				<td>取消</td>
 			</tr>
+			<tr>
+					<td colspan="6"><div class="right red">总金额</div></td>
+					<td colspan="4"><div class="left red total-price"></div></td>
+				</tr>
             <tr>
 				<td colspan="10" align="center">
 						<s:submit name="submit" cssClass="btn btn-primary" value="提交申请"></s:submit>
