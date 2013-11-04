@@ -37,6 +37,9 @@
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<link href="../css/css.css" rel="stylesheet" type="text/css" />
+ <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="../js/jquery.js"></script>
  <script language="javascript">
 			function changelocation6(locationid){
 			var onecount6;
@@ -155,6 +158,14 @@
 		} 
 		} 		   
 		}
+		
+		
+		$(function(){
+			$(".export").click(function(){
+				$("[name='export']").val(1);
+				$("#submit").trigger("click");
+			});
+		});
 		</script>
 
 </head>
@@ -171,9 +182,11 @@
      sh=storeHouseDao.selectOutHouseByUserName(user.getUserName(),Integer.valueOf(outVerify).intValue(),currentPage,pg.getPagesize());
      
   %>   
-    <s:form name="myform" action="outSelectByOption?currentPage=1" method="post" theme="simple" >
+    <s:form id="myform" name="myform" action="outSelectByOption?currentPage=1" method="post" theme="simple" >
       <table  class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
-        <tr><td><s:hidden name="outVerify" value="%{#request.outVerify}"/></td></tr>
+        <tr><td><s:hidden name="outVerify" value="%{#request.outVerify}"/>
+        	<s:hidden name="export" value="0"/>
+        </td></tr>
        
        <tr>
 		<td  align="center"> 领用部门：</td>
@@ -267,8 +280,8 @@
            	  <struts:datetimepicker  cssStyle="width:100px;" name="addDateBegin" displayFormat="yyyy-MM-dd"  />                       
                 到<struts:datetimepicker cssStyle="width:100px;" name="addDateEnd" displayFormat="yyyy-MM-dd"  />                         
            </td> 
-            <td align="center"> &nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td>
-             &nbsp;<a class="left-font01" href="outSelectExportAction.action">出库导出</a></td>                               
+            <td align="center"> &nbsp;&nbsp;<s:submit id="submit" style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td>
+             &nbsp;<a class="left-font01 export" href="javascript:void(0)">出库导出</a></td>                               
       </tr>
           <tr>
 					<td>

@@ -57,7 +57,7 @@ public class StoreCountByOption extends ActionSupport  {
 		   session.setAttribute("sh1",request.getParameter("houseId").trim());
 		   session.setAttribute("fc1",request.getParameter("firstCName").trim());
 		   session.setAttribute("sc1",request.getParameter("secondCName").trim()); 
-
+		  
 			int currentPage=Integer.valueOf(request.getParameter("currentPage").trim()).intValue();
 			int pageSize=15;
 			String systemName="0";

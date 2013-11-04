@@ -1,21 +1,20 @@
 package com.yz.manager.export;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.struts2.ServletActionContext;
 
 import jxl.Workbook;
 import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.yz.manager.bean.power;
@@ -35,22 +34,24 @@ public class outSelectExportAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		HttpServletRequest request= ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
 		HttpSession session=request.getSession();
 		user us=new user();
 		power pw=new power();
 		us=(user)session.getAttribute("us");
 		pw=us.getPower();
 		try {
-			File exp = new File(ServletActionContext.getServletContext().getRealPath("export"+"\\"+"outStore"+"\\"+us.getUserName()+"outStore.xls"));		
+			//File exp = new File(ServletActionContext.getServletContext().getRealPath("export"+"\\"+"outStore"+"\\"+us.getUserName()+"outStore.xls"));		
 			
-			if(exp.exists()){
+			/*if(exp.exists()){
 				exp.delete();
 				exp.getParentFile().mkdirs();
 			}else{
 				exp.getParentFile().mkdirs();
-			}
-			
-			OutputStream outf = new FileOutputStream(exp);
+			}*/
+			response.setContentType("application/vnd ms-excel");
+			response.setHeader("Content-Disposition","attachment; filename="+new String("出库导出.xls".getBytes("UTF-8"),"iso8859-1"));
+			OutputStream outf = response.getOutputStream();//new FileOutputStream(exp);
 			WritableWorkbook book=Workbook.createWorkbook(outf);
 			  List<outStoreHouse> sh=new ArrayList<outStoreHouse>();
 			    if(pw.isSystemManager()){
