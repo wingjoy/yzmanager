@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="gb2312"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.yz.manager.bean.user" %> 
 <%@page import="com.yz.manager.storehouse.bean.*" %> 
 <%@page import="com.yz.manager.dao.daoUtil" %>
@@ -9,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>�޸Ĳ��ſⷿ��</title>
+<title>修改部门库房名</title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
 </head>
 <body bgcolor="#E4FAF9"> 
@@ -24,28 +23,28 @@
      request.setAttribute("sdp",sdp);
   }else request.setAttribute("g",(shouse)request.getAttribute("c"));
   %>
- <h1 class="h1" align="center">�޸Ĳ��ſⷿ����</h1>
+ <h1 class="h1" align="center">修改部门库房名称</h1>
  
  <s:form action="modifyShouseAction" method="post" theme="simple">
         <s:token></s:token>
        <table class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
            <tr >
-             <td align="center"> �ⷿ��ţ�</td>
+             <td align="center"> 库房编号：</td>
              <td align="center"> <s:textfield name="id" value="%{#request.g.id}"  readonly="true" size="30" ></s:textfield></td>
          </tr> 
          <tr><td>&nbsp;</td></tr>
           <tr >
-             <td align="center"> �������ţ�</td>
+             <td align="center"> 所属部门：</td>
              <td align="center"> <s:textfield  value="%{#request.sdp}"  readonly="true" size="30" ></s:textfield></td>
          </tr>  
          <tr><td>&nbsp;</td></tr>    
            <tr >
-             <td align="center"> ԭ�ⷿ���ƣ�</td>
+             <td align="center"> 原库房名称：</td>
              <td align="center"> <s:textfield  value="%{#request.g.houseName}"  readonly="true" size="30" ></s:textfield></td>
          </tr>  
          <tr><td>&nbsp;</td></tr>    
            <tr>
-             <td align="center">�¿ⷿ���ƣ�</td>
+             <td align="center">新库房名称：</td>
              <td align="center"> <s:textfield name="houseName"  size="30"></s:textfield></td>
             <td class="actionmessage">
               <s:fielderror>
@@ -59,8 +58,8 @@
               
             </td>
             <td align="center">
-              <s:submit name="submit" value="�� ��"></s:submit>&nbsp;&nbsp;
-              <s:reset name="reset" value="�� ��"></s:reset>             
+              <s:submit name="submit" value="提 交"></s:submit>&nbsp;&nbsp;
+              <s:reset name="reset" value="重 置"></s:reset>             
             <br></td>
           </tr>
        </table>

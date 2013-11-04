@@ -1,7 +1,12 @@
 package com.yz.manager.storehouse.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.yz.manager.dao.storeHouseDao;
 import com.yz.manager.storehouse.bean.storeHouse;
@@ -17,7 +22,15 @@ public class verifyStoreAction extends ActionSupport {
 	 private String inVerify;
      private String verifyRemarks;
 	
-	public String getInVerify() {
+     private Map<String,storeHouse> storeHouses = new HashMap<String,storeHouse>();
+	
+    public Map<String, storeHouse> getStoreHouses() {
+        return storeHouses;
+    }
+    public void setStoreHouses(Map<String, storeHouse> storeHouses) {
+        this.storeHouses = storeHouses;
+    }
+    public String getInVerify() {
 		return inVerify;
 	}
 	public void setInVerify(String inVerify) {
@@ -36,17 +49,14 @@ public class verifyStoreAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		HttpServletRequest re=ServletActionContext.getRequest();	
-		storeHouse sh=storeHouseDao.selectHouse(this.getId().trim());
-		sh.setInVerify(Integer.valueOf(this.getInVerify()).intValue());	
-		sh.setVerifyRemarks(this.getVerifyRemarks());
-		int rs=storeHouseDao.modifyHouseCount(sh);
+		int rs = storeHouseDao.inVerify(storeHouses, Integer.valueOf(this.getInVerify()).intValue(), verifyRemarks);
 		if(rs==1){
 			this.addActionMessage("入库审核成功");
-			re.setAttribute("said", String.valueOf(sh.getId()));
+			re.setAttribute("said", String.valueOf(this.getId()));
 			return SUCCESS;
 		}else{
 			this.addActionMessage("入库审核出错，请重新审核或与管理员联系");
-			re.setAttribute("said", String.valueOf(sh.getId()));
+			re.setAttribute("said", String.valueOf(this.getId()));
 			return INPUT;
 		}
 		

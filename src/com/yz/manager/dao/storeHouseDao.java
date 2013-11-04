@@ -351,6 +351,41 @@ public class storeHouseDao {
 					return result;
 			 }
 
+		 
+		 @SuppressWarnings("unchecked")
+         public static int inVerify( Map<String,storeHouse> storeHouses ,Integer inverify,String verifyRemarks){
+              
+                 Session session=null;   
+                 Transaction tx=null;
+                 int result=0;
+                 try {   
+                     session=HibernateSessionFactory.getSession();
+                     tx=session.beginTransaction();  
+                     for(storeHouse ex:storeHouses.values()){
+                         Criteria criteria=session.createCriteria(secondClass.class);
+                         criteria.add(Restrictions.eq("id", Integer.valueOf(ex.getSecondCName()).intValue()));
+                         secondClass sc=(secondClass)criteria.uniqueResult();
+                         if(sc!=null){
+                             sc.setInCount(sc.getInCount()+ex.getInCount());
+                             sc.setCurrentCount(sc.getCurrentCount()+ex.getInCount());
+                             session.update(sc);
+                             session.createSQLQuery(" update storehouse set VerifyRemarks=?, inverify=? where id="+ex.getId())
+                                    .setString(0, verifyRemarks).setInteger(1, inverify).executeUpdate();
+                             result=1;
+                            
+                         }
+                     }
+                     tx.commit();
+                     }catch (HibernateException e) {
+                         result = -1;
+                             if(tx!=null)tx.rollback();
+                             throw e;            
+                 }finally{
+                     if(session.isOpen()) session.close();
+                 }
+                 return result;
+          }
+		 
 		 @SuppressWarnings("unchecked")
 			public static int selectStoreByVerifySize(String userName,int inVerify){
 		 		 

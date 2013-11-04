@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="gb2312"%>
+    pageEncoding="utf-8"%>
 <%@page import="com.yz.manager.bean.*" %>  
 <%@page import="com.yz.manager.dao.*" %> 
 <%@page import="java.util.*" %> 
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门库房管理</title>
+<title>閮ㄩ棬搴撴埧绠＄悊</title>
 	<link href="../css/css.css" rel="stylesheet" type="text/css" />
 </head>
 <body bgcolor="#E4FAF9">
@@ -21,12 +21,12 @@
      List<shouse> sh=daoUtil.selectShouse();
   %>
        <table class="left-font01"  align="center" border="0" cellspacing="0" cellpadding="0" >
-         <tr><td><a class="left-font01" href="addShouse.jsp">增加部门库房</a></td></tr>
+         <tr><td><a class="left-font01" href="addShouse.jsp">澧炲姞閮ㄩ棬搴撴埧</a></td></tr>
        </table>
        
        <table class="left-font01" width="80%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           <tr height="25" class="tableth" bgcolor="#8E8EFF">
-          <th>部门库房编号</th><th>归属部门</th><th>库房名称</th><th>删除</th><th>修改</th>
+          <th>閮ㄩ棬搴撴埧缂栧彿</th><th>褰掑睘閮ㄩ棬</th><th>搴撴埧鍚嶇О</th><th>鍒犻櫎</th><th>淇敼</th>
           </tr>
           <%
             for(shouse s : sh){
@@ -35,8 +35,8 @@
               "<td align='center'>"+s.getId()+"</td>"+
                "<td align='center'>"+daoUtil.selectDepartment3(Integer.valueOf(s.getDepartment()).intValue())+"</td>"+
               "<td align='center'>&nbsp;"+s.getHouseName()+"</td>"+
-              "<td align='center'><a class='left-font01' href='deleteShouseAction.action?Id="+s.getId()+"' >删除</a></td>"+
-              "<td align='center'><a class='left-font01' href='modifyShouse.jsp?Id="+s.getId()+"' >修改</a></td>"+
+              "<td align='center'><a class='left-font01' href='deleteShouseAction.action?Id="+s.getId()+"' >鍒犻櫎</a></td>"+
+              "<td align='center'><a class='left-font01' href='modifyShouse.jsp?Id="+s.getId()+"' >淇敼</a></td>"+
               "</tr>");
             };                   
            %>

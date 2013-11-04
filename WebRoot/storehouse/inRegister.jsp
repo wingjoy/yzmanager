@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="gb2312"%>
+	pageEncoding="utf-8"%>
 <%@page import="java.util.*"%>
 <%@page import="com.yz.manager.dao.daoUtil"%>
 <%@page import="com.yz.manager.bean.*"%>
@@ -51,18 +51,18 @@
 			onecount1=<%=count1%>;
 			function changelocation1(locationid){
 			document.myform.houseId.length=0;
-			document.myform.houseId.options[0]=new Option('Ñ¡Ôñ¿â·¿','0'); 
+			document.myform.houseId.options[0]=new Option('é€‰æ‹©åº“æˆ¿','0'); 
 			var i1; 
 			for(i1=0;i1<onecount1;i1++){
 			if (subcat1[i1][2] == locationid) 
 			{ 
-				if(subcat1[i1][1]=="°ì¹«ÊÒ¿â·¿")
+				if(subcat1[i1][1]=="åŠå…¬å®¤åº“æˆ¿")
 				document.myform.houseId.options[document.myform.houseId.length] = new Option(subcat1[i1][1], subcat1[i1][0]); 
 			} 			   
 			}	
 			
-			$("[name$='firstCName']").html("<option value='0'>Ñ¡ÔñÎïÆ··ÖÀà</option>"); 	
-			$("[name$='secondCName']").html("<option value='0'>Ñ¡ÔñÎïÆ·</option>"); 
+			$("[name$='firstCName']").html("<option value='0'>é€‰æ‹©ç‰©å“åˆ†ç±»</option>"); 	
+			$("[name$='secondCName']").html("<option value='0'>é€‰æ‹©ç‰©å“</option>"); 
 			}
 			
      </script>
@@ -83,7 +83,7 @@
 		onecount4=<%=count4%>;
 		function changelocation2(locationid){
 			var i4;
-			var selectContent  = "<option value='0'>Ñ¡ÔñÎïÆ··ÖÀà</option>";
+			var selectContent  = "<option value='0'>é€‰æ‹©ç‰©å“åˆ†ç±»</option>";
 			for(i4=0;i4<onecount4;i4++){
 				if (subcat4[i4][2] == locationid) {
 					selectContent +="<option value='"+subcat4[i4][0]+"'>"+subcat4[i4][1]+"</option>";
@@ -91,10 +91,10 @@
 				} 
 			} 	
 			$("[name$='firstCName'").html(selectContent);
-			$("[name$='secondCName']").html("<option value='0'>Ñ¡ÔñÎïÆ·</option>");    
+			$("[name$='secondCName']").html("<option value='0'>é€‰æ‹©ç‰©å“</option>");    
 		}
 		
-		// add by gavin for ÅúÁ¿³ö¿âµÇ¼Ç
+		// add by gavin for æ‰¹é‡å‡ºåº“ç™»è®°
 		$(function(){
 			var i = 0;
 			$(".add-new").click(function(){
@@ -131,7 +131,7 @@
 		onecount=<%=count%>;
 		function changelocation3(select){
 			var i;
-			var selectContent  = "<option value='0'>Ñ¡ÔñÎïÆ·</option>";
+			var selectContent  = "<option value='0'>é€‰æ‹©ç‰©å“</option>";
 			for(i=0;i<onecount;i++){
 				if (subcat[i][2] == $(select).val()){ 
 					selectContent +="<option value='"+subcat[i][0]+"'>"+subcat[i][1]+"</option>";
@@ -221,14 +221,14 @@
 
 		<table class=" table table-striped">
 			<tr>
-				<td align="center">²¿ÃÅ¿â·¿£º</td>
+				<td align="center">éƒ¨é—¨åº“æˆ¿ï¼š</td>
 				<td><select name="department" style="width:200px;"
 					onChange="changelocation1(document.myform.department.options[document.myform.department.selectedIndex].value)"
 					size="1">
-						<option selected value="0">Ñ¡Ôñ²¿ÃÅ</option>
+						<option selected value="0">é€‰æ‹©éƒ¨é—¨</option>
 						<%
 							for (department d : dp) {
-									if ("°ì¹«ÊÒ".equals(d.getDepartment())) {
+									if ("åŠå…¬å®¤".equals(d.getDepartment())) {
 						%>
 						<option value="<%=d.getDepartmentId()%>"><%=d.getDepartment()%></option>
 						<%
@@ -236,47 +236,47 @@
 								}
 						%>
 				</select></td>
-				<td align="center">&nbsp;&nbsp;¿â·¿Ãû³Æ£º</td>
+				<td align="center">&nbsp;&nbsp;åº“æˆ¿åç§°ï¼š</td>
 				<td><select name="houseId" style="width:200px;"
 					onChange="changelocation2(document.myform.houseId.options[document.myform.houseId.selectedIndex].value)"
 					size="1">
-						<option selected value="0">Ñ¡Ôñ¿â·¿</option>
+						<option selected value="0">é€‰æ‹©åº“æˆ¿</option>
 				</select></td>
 			</tr>
 		</table>
 		<table class=" table table-striped table-bordered" align="center"
 			border="0" cellspacing="0" cellpadding="0">
-			<!-- added by gavincook for [ÅúÁ¿Èë¿âµÇ¼Ç] -->
+			<!-- added by gavincook for [æ‰¹é‡å…¥åº“ç™»è®°] -->
 			<tr>
-				<td>ÎïÆ··ÖÀà</td>
-				<td>ÎïÆ·Ãû³Æ</td>
-				<td>¹æ¸ñ</td>
-				<td>ÊıÁ¿</td>
-				<td>µ¥Î»</td>
-				<td>µ¥¼Û</td>
-				<td>×Ü¼Û</td>
-				<td>ÉóºËÈË</td>
-				<td>±¸×¢</td>
-				<td>È¡Ïû</td>
+				<td>ç‰©å“åˆ†ç±»</td>
+				<td>ç‰©å“åç§°</td>
+				<td>è§„æ ¼</td>
+				<td>æ•°é‡</td>
+				<td>å•ä½</td>
+				<td>å•ä»·</td>
+				<td>æ€»ä»·</td>
+				<td>å®¡æ ¸äºº</td>
+				<td>å¤‡æ³¨</td>
+				<td>å–æ¶ˆ</td>
 			</tr>
             <tr>
 				<td colspan="10" align="center">
-						<s:submit name="submit" cssClass="btn btn-primary" value="Ìá½»ÉêÇë"></s:submit>
-						<s:reset name="reset" cssClass="btn btn-primary"  value="ÖØĞÂÊäÈë"></s:reset>
-						<input type="button" value="Ìí¼ÓÒ»¸öÎïÆ·ÉêÇë" class="btn btn-primary add-new">
-						<input type="button" value="excelµ¼Èë" class="btn btn-primary import-excel">
+						<s:submit name="submit" cssClass="btn btn-primary" value="æäº¤ç”³è¯·"></s:submit>
+						<s:reset name="reset" cssClass="btn btn-primary"  value="é‡æ–°è¾“å…¥"></s:reset>
+						<input type="button" value="æ·»åŠ ä¸€ä¸ªç‰©å“ç”³è¯·" class="btn btn-primary add-new">
+						<input type="button" value="excelå¯¼å…¥" class="btn btn-primary import-excel">
 			    </td>
 		   </tr>
 		</table>
 	</s:form>
 	<table style="display: none;" id="recordTable">
-	   <!-- ¼ÇÂ¼³õÊ¼ -->
+	   <!-- è®°å½•åˆå§‹ -->
 	        <tr class="record">
 				<td><select name="storeHouses[%s].firstCName" onChange="changelocation3(this)" size="1">
-						<option selected value="0">Ñ¡ÔñÎïÆ··ÖÀà</option>
+						<option selected value="0">é€‰æ‹©ç‰©å“åˆ†ç±»</option>
 				</select></td>
 				<td><select  name="storeHouses[%s].secondCName" size="1">
-						<option selected value="0">Ñ¡ÔñÎïÆ·</option>
+						<option selected value="0">é€‰æ‹©ç‰©å“</option>
 				</select></td>
 				<td align="center">
 				    <input class = "width_50 red" type="text" name="storeHouses[%s].inContent" size="10" />
@@ -305,16 +305,16 @@
 				<td><i class="icon-remove pointer"></i></td>
 			</tr>
 		</table>
-	  <!-- /¼ÇÂ¼³õÊ¼ -->
+	  <!-- /è®°å½•åˆå§‹ -->
 	  
 	  <div id="fileModal" class="modal hide fade">
 	  		 <div class="modal-header">
-			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">¡Á</button>
-			    <h3 id="myModalLabel">Excel µ¼Èë</h3>
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã—</button>
+			    <h3 id="myModalLabel">Excel å¯¼å…¥</h3>
 			  </div>
 			 <div class="modal-body">
 				 	<div id="content">
-						<!-- enctypeÊôĞÔÎª±íµ¥¶¨ÒåÁËMIME±àÂë·½Ê½£¬ÉÏ´«ÎÄ¼şµÄ±íµ¥enctypeÊôĞÔ±ØĞëÈç´ËÉèÖÃ -->
+						<!-- enctypeå±æ€§ä¸ºè¡¨å•å®šä¹‰äº†MIMEç¼–ç æ–¹å¼ï¼Œä¸Šä¼ æ–‡ä»¶çš„è¡¨å•enctypeå±æ€§å¿…é¡»å¦‚æ­¤è®¾ç½® -->
 						<form id="uploadForm" name ="dsad"  action="../fileUpload_save.action" method="post" enctype="multipart/form-data">
 							<table class=" table table-striped table-condensed" align="center"
 								border="0" cellspacing="0" cellpadding="0">
@@ -325,19 +325,19 @@
 							    </tr>
 								<tr>
 									<td colspan="10" align="center">
-									<input type="submit" class="btn btn-primary" value="µ¼Èë" />
-									<!-- <input type="button" value="Ìí¼ÓÒ»¸öÎÄ¼şÉÏ´«À¸Ä¿" class="btn btn-primary add-new-file"> -->
+									<input type="submit" class="btn btn-primary" value="å¯¼å…¥" />
+									<!-- <input type="button" value="æ·»åŠ ä¸€ä¸ªæ–‡ä»¶ä¸Šä¼ æ ç›®" class="btn btn-primary add-new-file"> -->
 									</td>
 								</tr>
 							</table>
 						</form>
-						<!-- Ìí¼ÓÎÄ¼şÀ¸Ä¿¼ÇÂ¼¿ªÊ¼ -->
+						<!-- æ·»åŠ æ–‡ä»¶æ ç›®è®°å½•å¼€å§‹ -->
 						<table style="display: none;" id="fileTable">
 							<tr class="fileRecord">
 								    <td>
-									   <input  type="file" name="file" value="Ñ¡ÔñÎÄ¼ş" />
+									   <input  type="file" name="file" value="é€‰æ‹©æ–‡ä»¶" />
 									</td>
-									<!-- <td style="text-align:center;">ÎÄ¼şÃèÊöĞÅÏ¢</td>
+									<!-- <td style="text-align:center;">æ–‡ä»¶æè¿°ä¿¡æ¯</td>
 									<td>
 									   <textarea  name="comment" cols="20" rows="3" > </textarea>
 									</td>
@@ -346,7 +346,7 @@
 									</td> -->
 							</tr>
 						</table>
-						<!-- Ìí¼ÓÎÄ¼şÀ¸Ä¿¼ÇÂ¼½áÊø -->
+						<!-- æ·»åŠ æ–‡ä»¶æ ç›®è®°å½•ç»“æŸ -->
 					</div>
 			  </div>
 	  </div>

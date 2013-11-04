@@ -37,7 +37,7 @@ public class modifyShouseAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		
+		System.out.println(houseName);
 		shouse g=new shouse();
 		g=daoUtil.selectShouse(Integer.valueOf(this.getId()).intValue());
 		g.setHouseName(this.getHouseName());

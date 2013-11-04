@@ -1,10 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="gb2312"%>
-<%@page import="com.yz.manager.bean.*" %>  
-<%@page import="com.yz.manager.dao.*" %> 
-<%@page import="com.yz.manager.date.*" %> 
-<%@page import="com.yz.manager.storehouse.bean.*" %> 
-<%@page import="java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="gb2312" %>
+<%@ page import="com.yz.manager.bean.*" %>  
+<%@ page import="com.yz.manager.dao.*" %> 
+<%@ page import="com.yz.manager.date.*" %> 
+<%@ page import="com.yz.manager.storehouse.bean.*" %> 
+<%@ page import="java.util.*" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -51,8 +50,9 @@
       
        </table>
        <div style="width:80%;margin: 0 auto;">
+        <input type="hidden" value="<%=aId %>" name="id"/>
        <table class="table table-striped table-bordered" width="80%"  align="center" border="1" cellspacing="0" cellpadding="0" >
-               <s:hidden name="id" value="%{#request.ps.id}" ></s:hidden>
+              
           <tr height="25">
              <%--  <td align="center" width="15%">日期</td><td width="35%"><%= CurrentDate.parseDate4(ps.getInDate().toString()) %></td> --%>
               <td colspan="2" width="15%" align="center">部门</td><td colspan="2" width="35%"><%= gd%></td>
@@ -72,12 +72,17 @@
           	<td>状态</td>
           	<td>备注</td>
           </tr>
-          <%for(storeHouse p:ps) {%>
+          <% for(storeHouse p:ps) {%>
           	<tr>
-          		<td><%= daoUtil.selectFirstClass5(Integer.valueOf(p.getFirstCName()).intValue())%></td>
-          	    <td><%= daoUtil.selectSecondClass8(p.getSecondCName())%></td>
-          		<td><%= p.getInContent()%></td>
-          		<td><%= p.getInCount()%>&nbsp;<%= p.getUnit()%></td>
+          		<td>
+          		    <input type="hidden" value="<%=p.getId()%>" name="storeHouses['<%=p.getId()%>'].id"/> 
+          		     <input type="hidden" value="<%=p.getSecondCName()%>" name="storeHouses['<%=p.getId()%>'].secondCName"/> 
+          		    <%= daoUtil.selectFirstClass5(Integer.valueOf(p.getFirstCName()).intValue())%>
+          		</td>
+          	  <td><%= daoUtil.selectSecondClass8(p.getSecondCName())%></td>
+          	  <td><%=p.getInContent()%></td>
+          		<td><input style="width: 70%;" type="text" value="<%=p.getInCount()%>" name="storeHouses['<%=p.getId()%>'].inCount"/>
+          		<%= p.getUnit()%></td>
           		<td><%= p.getUnitPrice() %></td>
           		<td><%= p.getUnitPrice()*p.getInCount() %></td>
           		<td>
@@ -86,7 +91,7 @@
           			<%}else{ %>
 	                                                     审核未通过<%} %> 
           		</td>
-          		<td><%= p.getInRemarks() %></td>
+          		<td><%= p.getInRemarks()==null?"":p.getInRemarks() %></td>
           	</tr>
           <% } %> 
              <tr height="25">	
@@ -103,9 +108,9 @@
 					<td colspan="2"><s:textarea name="verifyRemarks" value="同意" cols="23" rows="4"></s:textarea></td>
 				</tr>
            <tr height="26">
-            <td align="center" colspan="8">
-              <s:submit name="submit" style="font-size:12px"value="审核确认"></s:submit>&nbsp;&nbsp;&nbsp;&nbsp;
-              <s:reset name="reset" style="font-size:12px"value="重新填写"></s:reset>             
+            <td align="center" colspan="8" style="text-align:center;">
+              <s:submit name="submit" style="font-size:12px" cssClass="btn btn-primary" value="审核确认"></s:submit>&nbsp;&nbsp;&nbsp;&nbsp;
+              <s:reset name="reset" style="font-size:12px" cssClass="btn btn-primary" value="重新填写"></s:reset>             
             <br></td>
           </tr>
        </table>
