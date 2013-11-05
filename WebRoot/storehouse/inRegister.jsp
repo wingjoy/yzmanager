@@ -122,12 +122,12 @@
 				var inCount = $tr.find("[name$='inCount']").val();
 				var unitPrice = $tr.find("[name$='unitPrice']").val();
 				if(reg.test(inCount)&&reg.test(unitPrice)){
-					$tr.find("[name$='totalPrice']").val(inCount*unitPrice);
+					$tr.find("[name$='totalPrice']").val((inCount*unitPrice).toFixed(2));
 					var totalPrice = 0;
 					$("[name$='totalPrice']").each(function(index,e){
 						totalPrice+= +$(e).val();
 					});
-					$(".total-price").html(totalPrice+"元");
+					$(".total-price").html(totalPrice.toFixed(2)+"元");
 				}
 			});
 		});

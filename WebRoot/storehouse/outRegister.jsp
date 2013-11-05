@@ -112,12 +112,12 @@
 					$tr.find("[name$='PriceCount']").val("");
 					return false;
 				}
-				$tr.find("[name$='PriceCount']").val(unitPrice*$(this).val());
+				$tr.find("[name$='PriceCount']").val((unitPrice*$(this).val()).toFixed(2));
 				var totalPrice = 0;
 				$("[name$='PriceCount']").each(function(index,e){
 					totalPrice+=+($(e).val());
 				});
-				$(".total-price").html(totalPrice);
+				$(".total-price").html(totalPrice.toFixed(2)+"Ԫ");
 			});
 			$(".add-new").trigger("click");
 		});
