@@ -30,6 +30,9 @@ public class loginSystemAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		//HttpSession session=ServletActionContext.getRequest().getSession();
+		if(this.getUserName()==null||this.getUserPassword()==null){
+			return INPUT;
+		}
 		int b1=0;
 		b1=validateDao.validateUser(this.getUserName().trim(),this.getUserPassword().trim());
 		if(b1==2){
