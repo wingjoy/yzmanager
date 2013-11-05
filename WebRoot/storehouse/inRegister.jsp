@@ -90,7 +90,7 @@
 					//.options[document.myform.firstCName.length] = new Option(subcat4[i4][1], subcat4[i4][0]); 
 				} 
 			} 	
-			$("[name$='firstCName'").html(selectContent);
+			$("[name$='firstCName']").html(selectContent);
 			$("[name$='secondCName']").html("<option value='0'>选择物品</option>");    
 		}
 		
