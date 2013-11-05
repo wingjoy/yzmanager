@@ -15,6 +15,68 @@
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
 <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("[name$='inCount']").keyup(function(){
+			var $tr = $(this).closest("tr");
+			var $subTotal = $tr.find(".sub-total");
+			if(/^\d+$/.test($(this).val())){
+				$subTotal.html(($(this).val()*$tr.find(".unit-price").html()).toFixed(2));
+			}else{
+				$(this).val(0);
+				$subTotal.html(0);
+				alert("请输入数字");
+			}
+			calcTotalPrice();
+		});
+		calcTotalPrice();
+	});
+	
+	function calcTotalPrice(){
+		var totalPrice = 0;
+		$(".sub-total").each(function(index,e){
+			totalPrice+=(+$(e).html());
+		});
+		$(".total-price").html(totalPrice.toFixed(2));
+	}
+</script>
+<style type="text/css">
+			.width_50{
+				width:50px;
+			}
+			
+			.width_100{
+				width:100px;
+			}
+			
+			.red{
+				color:red !important;
+			}
+			
+			.inline{
+				white-space: nowrap;
+			}
+			
+			td{
+				vertical-align: middle !important;
+				text-align: center !important;
+			}
+			
+			.pointer{
+				cursor: pointer;
+			}
+			
+			.right{
+				text-align: right;
+				padding: 0 10px;
+			}
+			
+			.left{
+				text-align: left;
+				padding: 0 10px;
+			}
+		</style>
 </head>
 <body bgcolor="#E4FAF9">
  <%
@@ -44,6 +106,7 @@
 	            else status="审核未通过"; 
     }
   %>
+  
      <s:form action="verifyStoreAction" method="post" theme="simple">
        <table class="actionmessage" align="center" >
            <tr><td>&nbsp; <s:actionmessage/></td></tr>
@@ -83,8 +146,8 @@
           	  <td><%=p.getInContent()%></td>
           		<td><input style="width: 70%;" type="text" value="<%=p.getInCount()%>" name="storeHouses['<%=p.getId()%>'].inCount"/>
           		<%= p.getUnit()%></td>
-          		<td><%= p.getUnitPrice() %></td>
-          		<td><%= p.getUnitPrice()*p.getInCount() %></td>
+          		<td><span class="unit-price"><%= p.getUnitPrice() %></span></td>
+          		<td><span class="sub-total"><%=String.format("%.2f",p.getUnitPrice()*p.getInCount())%></span>元</td>
           		<td>
           			<%if(ps.get(0).getInVerify()==0){%>未审核
           			<%}else if(ps.get(0).getInVerify()==1){%>审核通过
@@ -94,6 +157,12 @@
           		<td><%= p.getInRemarks()==null?"":p.getInRemarks() %></td>
           	</tr>
           <% } %> 
+	          <tr>
+	          	<td colspan="5"><div class="red right">总价</div></td>
+	          	<td colspan="3" class="red">
+	          		<div class="left"><span class="total-price"></span>元</div>
+	          	</td>
+	          </tr>
              <tr height="25">	
             	<td align="center" colspan="2">
 						审 核：

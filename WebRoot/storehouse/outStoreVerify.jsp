@@ -7,11 +7,12 @@
 <%@page import="com.yz.manager.storehouse.bean.*"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<% String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>³ö¿âÉóºË</title>
 </head>

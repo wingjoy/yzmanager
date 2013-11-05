@@ -64,7 +64,7 @@
               <td align="center">数量</td><td><%= ps.getInCount()%>&nbsp;<%= ps.getUnit()%></td>
           </tr>  
           <tr height="25">
-              <td align="center">总价</td><td><%= ps.getTotalPrice() %></td>
+              <td align="center">总价</td><td><%=String.format("%.2f",ps.getUnitPrice()*ps.getInCount())%></td>
               <td align="center">审核人</td><td><%= vname%></td>
           </tr>
               <tr height="25">

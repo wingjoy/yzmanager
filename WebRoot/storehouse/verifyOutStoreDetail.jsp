@@ -6,13 +6,76 @@
 <%@page import="com.yz.manager.date.*"%>
 <%@page import="com.yz.manager.storehouse.bean.*"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-
+<% String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>费用详情</title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<%=basepath %>js/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$(".apply-count").keyup(function(){
+			var $tr = $(this).closest("tr");
+			var $subTotal = $tr.find(".sub-total");
+			if(/^\d*$/.test($(this).val())){
+				$subTotal.html(($(this).val()*$tr.find(".unit-price").html()).toFixed(2));
+			}else{
+				$(this).val(0);
+				$subTotal.html(0);
+				alert("请输入数字");
+			}
+			calcTotalPrice();
+		});
+		calcTotalPrice();
+	});
+	
+	function calcTotalPrice(){
+		var totalPrice = 0;
+		$(".sub-total").each(function(index,e){
+			totalPrice+=(+$(e).html());
+		});
+		$(".total-price").html(totalPrice.toFixed(2));
+	}
+</script>
+<style type="text/css">
+			.width_50{
+				width:50px;
+			}
+			
+			.width_100{
+				width:100px;
+			}
+			
+			.red{
+				color:red !important;
+			}
+			
+			.inline{
+				white-space: nowrap;
+			}
+			
+			td{
+				vertical-align: middle !important;
+			}
+			
+			.pointer{
+				cursor: pointer;
+			}
+			
+			.right{
+				text-align: right;
+				padding: 0 10px;
+			}
+			
+			.left{
+				text-align: left;
+				padding: 0 10px;
+			}
+		</style>
 </head>
 <body bgcolor="#E4FAF9">
 	<%
@@ -86,51 +149,63 @@
 			<!-- 传递所有出库id -->
 			<input type="hidden" name="aId" value=<%=aId %> style="width:0; height:0" />
 		</table>
-		<table class="left-font01" width="90%" align="center" border="1"
+		<table class="table table-bordered"  style="width:80%" align="center" border="1"
 			cellspacing="0" cellpadding="0">
 			<s:hidden name="id" value="%{#request.ps.id}"></s:hidden>
 			<s:hidden name="outVerify" value="%{#request.ps.outVerify}"></s:hidden>
 			<tr height="25">
 				<td align="center" width="16%">申请日期</td>
-				<td width="34%"><%=CurrentDate.parseDate4(ps.getApplyDate().toString())%></td>
+				<td width="34%" colspan="2"><%=CurrentDate.parseDate4(ps.getApplyDate().toString())%></td>
 				<td width="16%" align="center">申请部门</td>
-				<td width="34%"><%=sqgd%></td>
+				<td width="34%" colspan="2"><%=sqgd%></td>
 			</tr>
 			<tr height="25">
 				<td align="center">申请人</td>
-				<td><%=sname%></td>
+				<td colspan="2"><%=sname%></td>
 				<td align="center">库存部门</td>
-				<td><%=kgd%></td>
+				<td colspan="2"><%=kgd%></td>
 			</tr>
 			<tr height="25">
-				<td align="center">库房</td>
-				<td colspan="3"><%=shn%></td>
+				<td align="center" >库房</td>
+				<td colspan="5"><%=shn%></td>
 			</tr>
 			<tr height="25">
 				<td align="center">分类</td>
 				<td align="center">数量</td>
+				<td align="center">单价</td>
+				<td align="center">总价</td>
 				<td align="center">用途</td>
 				<td align="center">备注</td>
 			</tr>
 		<%
-			for(int i=0; i<fc.size(); i++) {		
+		int i=0;
+			for(outStoreHouse p:pss) {	
+				secondClass s = daoUtil.selectSecondClass3(Integer.valueOf(p.getSecondCName()).intValue());
 		%>
 			<tr height="25">
-				<td><%=fc.get(i)%>--<%=sc.get(i) %></td>
-				<td>&nbsp;<input type="text" name=<%=aIds[i] %> value=<%=applyCount.get(i)%> style="width:20%;" /> <%=unit.get(i) %></td>
+				<td><%=daoUtil.selectFirstClass5(Integer.valueOf(p.getFirstCName()).intValue())%>--<%= s.getSecondCName()%></td>
+				<td>&nbsp;<input type="text" class="apply-count" name=<%=aIds[i] %> value=<%=p.getApplyCount()%> style="width:20%;" /> <%=p.getUnit() %></td>
+				<td><span class="unit-price"><%= s.getUnitPrice() %></span></td>
+          		<td><span class="sub-total"><%=String.format("%.2f", s.getUnitPrice()*p.getApplyCount())%></span>元</td>
 				<td><%=purpose.get(i)%></td>
 				<td><%=remarks.get(i)%></td>
 			</tr>
 		<%
-			}
+			i++;}
 		 %>
+		  <tr>
+	          	<td colspan="3"><div class="red right">总价</div></td>
+	          	<td colspan="3" class="red">
+	          		<div class="left"><span class="total-price"></span>元</div>
+	          	</td>
+	          </tr>
 			<tr height="25">
 				<td align="center">审 核：</td>
-				<td align="left"><input type="radio" name="verify" value="1"
+				<td align="left" colspan="2"><input type="radio" name="verify" value="1"
 					checked="checked" /> 通过 <input type="radio" name="verify"
 					value="2" /> 不通过</td>
 				<td align="center">审核意见</td>
-				<td><s:textarea name="verifyRemarks" value="" cols="23"
+				<td colspan="2"><s:textarea name="verifyRemarks" value="" cols="23"
 						rows="4"></s:textarea>
 				</td>
 			</tr>
@@ -139,7 +214,7 @@
 					if (ps.getOutVerify() == 0) {
 							out.println("<td align='center' style='color:red'> 提交库房主管审核：</td>");
 				%>
-				<td colspan='3'><select name="nextVerifyName"
+				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
 						<option selected value="0">选择审核人</option>
 						<%
@@ -155,7 +230,7 @@
 					} else if (ps.getOutVerify() == 1) {
 							out.println("<td align='center' style='color:red'> 提交库房管理员审核：</td>");
 				%>
-				<td colspan='3'><select name="nextVerifyName"
+				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
 						<option selected value="0">选择审核人</option>
 						<%
@@ -178,10 +253,10 @@
 			%>
 
 
-			<tr align="center" height="26">
-				<td align="center" colspan="4"><s:submit name="submit"
-						style="font-size:12px" value="审核确认"></s:submit>&nbsp;&nbsp;&nbsp;&nbsp;
-					<s:reset name="reset" style="font-size:12px" value="重新填写"></s:reset>
+			<tr align="center" height="26" >
+				<td align="center" colspan="6" style="text-align: center;"><s:submit name="submit"
+						style="font-size:12px" cssClass="btn btn-primary" value="审核确认"></s:submit>&nbsp;&nbsp;&nbsp;&nbsp;
+					<s:reset name="reset" cssClass="btn btn-primary" style="font-size:12px" value="重新填写"></s:reset>
 					<br>
 				</td>
 			</tr>
