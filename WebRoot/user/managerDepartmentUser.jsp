@@ -15,6 +15,7 @@
 </head>
 <body bgcolor="#E4FAF9">
   <%
+  String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/"; 
   user user=(user)session.getAttribute("us");
   if(user==null) response.sendRedirect("../index.jsp"); 
      int totalsize=0;
@@ -32,7 +33,7 @@
    
       <table class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
           <tr>       
-             <td align="right"><a class="left-font01" href="/user/addDepartmentuser.jsp">增加用户</a></td>
+             <td align="right"><a class="left-font01" href="<%=basepath %>user/addDepartmentuser.jsp">增加用户</a></td>
          </tr>    
         </table>
 
@@ -63,11 +64,11 @@
               );
               }else{
                out.println(
-              "<td align='center'><a class='left-font01' href='deleteDpUser.action?usId="+u1.getUserId()+"' >删除</a></td>"
+              "<td align='center'><a class='left-font01' href='"+basepath+"deleteDpUser.action?usId="+u1.getUserId()+"' >删除</a></td>"
               );
               }
               out.println(
-              "<td align='center'><a class='left-font01' href='/user/modifyDpUser.jsp?usId="+u1.getUserId()+"' >修改</a></td>"+
+              "<td align='center'><a class='left-font01' href='"+basepath+"user/modifyDpUser.jsp?usId="+u1.getUserId()+"' >修改</a></td>"+
               "</tr>");
             };                   
            %>
@@ -78,10 +79,10 @@
              <td>共<%= totalsize%>条记录|</td>
              <td>共<%= totalPage%>页|</td>
              <td>当前第<%= currentPage%>页&nbsp;|</td>
-             <td><a class="tablelink" href="managerDepartmentUser.jsp?currentPage=1">首页</a></td>
-             <td><a class="tablelink" href="managerDepartmentUser.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a></td>
-             <td><a class="tablelink" href="managerDepartmentUser.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a></td>
-             <td><a class="tablelink" href="managerDepartmentUser.jsp?currentPage=<%=totalPage %>">尾页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>/user/managerDepartmentUser.jsp?currentPage=1">首页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>/user/managerDepartmentUser.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>/user/managerDepartmentUser.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>/user/managerDepartmentUser.jsp?currentPage=<%=totalPage %>">尾页</a></td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">           
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){

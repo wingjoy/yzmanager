@@ -114,6 +114,9 @@
 			} else if (ps.getOutVerify() == 1) {
 				verifyName = daoUtil.selectHouseManagerVerifyName(ps
 						.getHouseId());
+			} else if (ps.getOutVerify() == 2) {
+				verifyName = daoUtil.selectHouseManagerVerifyName(ps
+						.getHouseId());
 			}
 			
 			shn = daoUtil.selectShouseName(Integer.valueOf(ps.getHouseId())
@@ -212,7 +215,7 @@
 			<tr height="25">
 				<%
 					if (ps.getOutVerify() == 0) {
-							out.println("<td align='center' style='color:red'> 提交库房主管审核：</td>");
+							out.println("<td align='center' style='color:red'> 提交部门管理人员审核：</td>");
 				%>
 				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
@@ -228,7 +231,7 @@
 
 				<%
 					} else if (ps.getOutVerify() == 1) {
-							out.println("<td align='center' style='color:red'> 提交库房管理员审核：</td>");
+							out.println("<td align='center' style='color:red'> 提交综合办主任审核：</td>");
 				%>
 				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
@@ -241,6 +244,25 @@
 							}
 						%>
 				</select></td>
+				<%
+					} else if(ps.getOutVerify() == 2){
+							out.println("<td align='center' style='color:red' colspan='1'> 提交部门经理审核</td>");
+				%>
+				<%-- <td>&nbsp;<s:hidden name="nextVerifyName"
+						value="%{#request.ps.nextVerifyName}"></s:hidden></td> --%>
+						
+						<td colspan='5'><select name="nextVerifyName"
+					style="width:200px;">
+						<option selected value="0">选择审核人</option>
+						<%
+							for (user u : verifyName) {
+						%>
+						<option value="<%=u.getUserName()%>"><%=u.getName()%></option>
+						<%
+							}
+						%>
+				</select></td>
+				</tr>
 				<%
 					} else {
 							out.println("<td align='center' style='color:red' colspan='3'> 请联系物品领用人进行出库业务处理</td>");

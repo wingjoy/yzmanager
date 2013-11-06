@@ -15,6 +15,7 @@
 </head>
 <body bgcolor="#E4FAF9">
 <%
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
   user user=(user)session.getAttribute("us");
   if(user==null) response.sendRedirect("../index.jsp"); 
    int totalsize=0;
@@ -34,7 +35,7 @@
 	  department=( HashMap<String,String>)daoUtil.selectDepartment();
 	  request.setAttribute("department",department);
   %>    
-    <s:form action="selectUserPowerByDAction?currentPage=1" method="post" theme="simple">
+    <s:form action="%{basepath}power/selectUserPowerByDAction?currentPage=1" method="post" theme="simple">
       <table class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
           <tr>
              <td align="center"> </td>  
@@ -65,7 +66,7 @@
               "</tr>");
               }                            
               else out.println(
-                    "<td align='center'><a class='left-font01' href='addpower.jsp?uname="+u1.getUserName()+"&dp="+u1.getDepartment()+"' >修改</a></td>"+
+                    "<td align='center'><a class='left-font01' href='"+basepath+"power/addpower.jsp?uname="+u1.getUserName()+"&dp="+u1.getDepartment()+"' >修改</a></td>"+
                     "</tr>");
             };     
         %>
@@ -76,19 +77,19 @@
              <td>共<%= totalsize%>条记录|</td>
              <td>共<%= totalPage%>页|</td>
              <td>当前第<%= currentPage%>页|</td>
-             <td><a class="tablelink" href="managerPower.jsp?currentPage=1">首页</a></td>
-             <td><a class="tablelink" href="managerPower.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a></td>
-             <td><a class="tablelink" href="managerPower.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a></td>
-             <td><a class="tablelink" href="managerPower.jsp?currentPage=<%=totalPage %>">尾页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>power/managerPower.jsp?currentPage=1">首页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>power/managerPower.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>power/managerPower.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a></td>
+             <td><a class="tablelink" href="<%=basepath %>power/managerPower.jsp?currentPage=<%=totalPage %>">尾页</a></td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">           
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){
                 if(j==currentPage){
                 out.println(
-                  "<option  selected value='managerPower.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option  selected value='"+basepath+"power/managerPower.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
                 }else {
                  out.println(
-                  "<option value='managerPower.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option value='"+basepath+"power/managerPower.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
                 }
               }   
               %>           

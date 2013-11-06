@@ -142,7 +142,7 @@ public class storeHouseDao {
 		        	session=HibernateSessionFactory.getSession();
 		        	
 		        	Criteria criteria=session.createCriteria(outStoreHouse.class);				
-					criteria.add(Restrictions.lt("outVerify", 3));
+					criteria.add(Restrictions.lt("outVerify", 4));
 					criteria.add(Restrictions.eq("nextVerifyName", userName));
 					criteria.addOrder(Order.desc("applyDate"));
 				    i=criteria.list().size();					    
@@ -196,7 +196,7 @@ public class storeHouseDao {
 			        try {	      
 			        	session=HibernateSessionFactory.getSession();		       
 			        	Criteria criteria=session.createCriteria(outStoreHouse.class);				
-						criteria.add(Restrictions.lt("outVerify", 3));
+						criteria.add(Restrictions.lt("outVerify", 4));
 						criteria.addOrder(Order.desc("applyDate"));
 						criteria.add(Restrictions.eq("nextVerifyName", userName));
 						criteria.setFirstResult((currentPage-1)*pageSize);

@@ -2431,19 +2431,18 @@ public class daoUtil {
 			public static List<user> selectDpAllIverifyName(String dp){
 		 		 
 				    Session session=null;	
-				    List<power> pw=new ArrayList<power>();
+				    List<houseManager> pw=new ArrayList<houseManager>();
 				    List<user> user=new ArrayList<user>();
 			        try {	      
 			        	session=HibernateSessionFactory.getSession();
-						Criteria criteria=session.createCriteria(power.class);	
-						criteria.add(Restrictions.eq("iverify", true));
+						Criteria criteria=session.createCriteria(houseManager.class);	
 						criteria.add(Restrictions.eq("department", dp));
-					    pw=(List<power>)criteria.list();	
+					    pw=(List<houseManager>)criteria.list();	
 					    if(pw!=null){			   
-					    	for(power p : pw){
+					    	for(houseManager p : pw){
 					   		    user u=new user ();
 					   		    criteria=session.createCriteria(user.class);	
-								criteria.add(Restrictions.eq("userName", p.getUserName()));
+								criteria.add(Restrictions.eq("userName", p.getManagerName()));
 								u=(user)criteria.uniqueResult();
 					    		user.add(u);
 					    	}

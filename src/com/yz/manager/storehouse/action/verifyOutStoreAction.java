@@ -116,6 +116,19 @@ public class verifyOutStoreAction extends ActionSupport {
 					sh.setOutDate(new Timestamp(date.getTime()));
 				}
 				result = storeHouseDao.modifyEndOutStoreHouse(sh);
+			}else if (outV == 3) {
+				if (this.getVerify().equals("1")) {
+					sh.setOutVerify(4);
+					sh.setHouseManagerRemarks(this.getVerifyRemarks());
+					Date date = new Date();
+					sh.setOutDate(new Timestamp(date.getTime()));
+				} else {
+					sh.setOutVerify(44);
+					sh.setHouseManagerRemarks(this.getVerifyRemarks());
+					Date date = new Date();
+					sh.setOutDate(new Timestamp(date.getTime()));
+				}
+				result = storeHouseDao.modifyEndOutStoreHouse(sh);
 			}
 			if (!result) {
 				this.addActionError("出库失败，请重新处理出库业务或与管理员联系");

@@ -15,6 +15,7 @@
 </head>
 <body bgcolor="#E4FAF9">
  <%
+ String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
   user user=(user)session.getAttribute("us");
   if(user==null) response.sendRedirect("../index.jsp"); 
    String dp=(String)session.getAttribute("dp");
@@ -75,11 +76,11 @@
               );
               }else{
                out.println(
-              "<td align='center'><a class='left-font01' href='deleteUser.action?usId="+u1.getUserId()+"' >É¾³ý</a></td>"
+              "<td align='center'><a class='left-font01' href='"+basepath+"user/deleteUser.action?usId="+u1.getUserId()+"' >É¾³ý</a></td>"
               );
               }
               out.println(
-              "<td align='center'><a class='left-font01' href='/user/modifyUser.jsp?usId="+u1.getUserId()+"' >ÐÞ¸Ä</a></td>"+
+              "<td align='center'><a class='left-font01' href='"+basepath+"user/modifyUser.jsp?usId="+u1.getUserId()+"' >ÐÞ¸Ä</a></td>"+
               "</tr>");
             };                   
            %>
