@@ -122,7 +122,7 @@
               <td colspan="2" align="center">库房</td><td colspan="2"><%= shn %></td>
           </tr>
             <tr height="25">
-              <td colspan="2" align="center">入库人</td><td colspan="2"><%= daoUtil.selectUser(aId)%></td>
+              <td colspan="2" align="center">入库人</td><td colspan="2"><%= sname%></td>
                <td colspan="2" align="center">审核人</td><td colspan="2"><%= vname%></td>
           </tr>
           <tr>
