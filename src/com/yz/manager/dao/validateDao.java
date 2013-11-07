@@ -30,31 +30,24 @@ public class validateDao {
 			criteria.add(Restrictions.eq("userName", userName.trim()));
 			
 			us=(user)criteria.uniqueResult();
-			//us.setName("陈飞");
-			//us.setStatus(true);
-			s.setAttribute("us", us);
-			System.out.println("8888888us:"+us);
-//			if(us==null){
-//				b1=0;
-//			}else{
-//				criteria.add(Restrictions.eq("userPassword", md5));
-//			    us=(user)criteria.uniqueResult();
-//			    if(us==null)b1=1;
-//				    else if(us!=null&us.isStatus()){	
-//				       s.setAttribute("us", us);
-//				    	b1=2;
-//				    }else if(us!=null&!us.isStatus()){
-//				    	b1=3;
-//				    }
-//				}
+			criteria.add(Restrictions.eq("userPassword", md5));
+		    us=(user)criteria.uniqueResult();
+		    if(us==null)
+		    	b1=1;
+			    else if(us!=null&us.isStatus()){	
+			       s.setAttribute("us", us);
+			    	b1=2;
+			    }else if(us!=null&!us.isStatus()){
+			    	b1=3;
+			    }
 			
 			} catch (HibernateException e) {
 				e.printStackTrace();
 			throw e;			
 		}
-//			finally{
-//			if(session.isOpen()) session.close();
-//		}
+			finally{
+			if(session.isOpen()) session.close();
+		}
 		return b1;
 	}
 		
