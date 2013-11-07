@@ -9,6 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
       user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
@@ -27,7 +28,7 @@
 <html>
 <head>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -245,7 +246,7 @@
           <%
 		        out.println(
 		             "<tr height='23' >"+
-		             "<th>序号</th><th>申请日期</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>申请数量</th><th>单位</th><th>部门审核</th><th>库房审核</th><th>库管审核</th><th>详情</th><th>删除</th>"+
+				             "<th>序号</th><th>申请日期</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>申请数量</th><th>单位</th><th>部门审核</th><th>主任审核</th><th>经理审核</th><th>库房审核</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );
 		            int k=1;;
@@ -262,49 +263,63 @@
 		               "<td align='center'>&nbsp;"+sn+"</td>" + 
 		                "<td align='center'>&nbsp;"+e.getApplyCount()+"</td>" + 
 		              "<td align='center'>&nbsp;"+e.getUnit()+"</td>");
-		              if(e.getOutVerify()==0){
-		                out.println(
-		                    "<td align='center'>未审核</td>"
-		                );
-		              }else  if(e.getOutVerify()!=0&e.getOutVerify()!=11){
-		                out.println(
-		                    "<td align='center'>通过</td>"
-		                );
-		              }else  if(e.getOutVerify()==11){
-		                out.println(
-		                    "<td align='center'>未通过</td>"
-		                );
-		              }
-		              if(e.getOutVerify()>=2&e.getOutVerify()<11){
-		                out.println(
-		                    "<td align='center'>通过</td>"
-		                );
-		              }else  if(e.getOutVerify()<2||e.getOutVerify()==11){
-		                out.println(
-		                    "<td align='center'>未审核</td>"
-		                );
-		              }else  if(e.getOutVerify()==22){
-		                out.println(
-		                    "<td align='center'>未通过</td>"
-		                );
-		              }
-		              if(e.getOutVerify()==3){
-		                out.println(
-		                    "<td align='center'>通过</td>"
-		                );
-		              }else  if(e.getOutVerify()<3||e.getOutVerify()==11||e.getOutVerify()==22){
-		                out.println(
-		                    "<td align='center'>未审核</td>"
-		                );
-		              }else  if(e.getOutVerify()==33){
-		                out.println(
-		                    "<td align='center'>未通过</td>"
-		                );
-		              }
+		             if(e.getOutVerify()==0){
+			                out.println(
+			                    "<td align='center'>未审核</td>"
+			                );
+			              }else  if(e.getOutVerify()!=0&e.getOutVerify()!=11){
+			                out.println(
+			                    "<td align='center'>通过</td>"
+			                );
+			              }else  if(e.getOutVerify()==11){
+			                out.println(
+			                    "<td align='center'>未通过</td>"
+			                );
+			              }
+			              if(e.getOutVerify()>=2&e.getOutVerify()<11){
+			                out.println(
+			                    "<td align='center'>通过</td>"
+			                );
+			              }else  if(e.getOutVerify()<2||e.getOutVerify()==11){
+			                out.println(
+			                    "<td align='center'>未审核</td>"
+			                );
+			              }else  if(e.getOutVerify()==22){
+			                out.println(
+			                    "<td align='center'>未通过</td>"
+			                );
+			              }
+			              if(e.getOutVerify()>3&e.getOutVerify()<11){
+			                out.println(
+			                    "<td align='center'>通过</td>"
+			                );
+			              }else  if(e.getOutVerify()<3||e.getOutVerify()==11||e.getOutVerify()==22){
+			                out.println(
+			                    "<td align='center'>未审核</td>"
+			                );
+			              }else  if(e.getOutVerify()==33){
+			                out.println(
+			                    "<td align='center'>未通过</td>"
+			                );
+			              }
+			              
+			              if(e.getOutVerify()==4){
+				                out.println(
+				                    "<td align='center'>通过</td>"
+				                );
+				              }else  if(e.getOutVerify()<4||e.getOutVerify()==11||e.getOutVerify()==33){
+				                out.println(
+				                    "<td align='center'>未审核</td>"
+				                );
+				              }else  if(e.getOutVerify()==44){
+				                out.println(
+				                    "<td align='center'>未通过</td>"
+				                );
+				              }
 		               out.println(
-		              "<td align='center'><a class='left-font01' href='detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>"); 
+		              "<td align='center'><a class='left-font01' href='"+basepath+"storehouse/detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>"); 
 		               out.println(
-		              "<td align='center'><a class='left-font01' href='deleteMyOutStoreAction.action?aId="+e.getId()+"' >>></a></td>");                             
+		              "<td align='center'><a class='left-font01' href='"+basepath+"storehouse/deleteMyOutStoreAction.action?aId="+e.getId()+"' >>></a></td>");                             
 		                 out.println( "</tr>");
            
 		         } 
@@ -316,10 +331,10 @@
              <td>共<%= totalsize%>条记录&nbsp;|</td>
              <td>共<%= totalPage%>页&nbsp;|</td>
              <td>当前第<%= currentPage%>页&nbsp;|</td>
-             <td><a class="tablelink" href="myOutStoreByOption.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="myOutStoreByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="myOutStoreByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="myOutStoreByOption.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/myOutStoreByOption.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/myOutStoreByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/myOutStoreByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/myOutStoreByOption.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">         
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){
