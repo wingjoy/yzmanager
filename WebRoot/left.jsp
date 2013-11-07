@@ -34,9 +34,8 @@ function tupian(idt){
 function list(idstr){
 	var name1="subtree"+idstr;
 	var name2="img"+idstr;
-	var objectobj=document.all(name1);
-	var imgobj=document.all(name2);
-	
+	var objectobj=document.getElementById(name1);
+	var imgobj=document.getElementById(name2);
 	
 	//alert(imgobj);
 	
@@ -44,10 +43,10 @@ function list(idstr){
 		for(i=1;i<8;i++){
 			var name3="img"+i;
 			var name="subtree"+i;
-			var o=document.all(name);
+			var o=document.getElementById(name);
 			if(o!=undefined){
 				o.style.display="none";
-				var image=document.all(name3);
+				var image=document.getElementById(name3);
 				//alert(image);
 				image.src="images/ico04.gif";
 			}
