@@ -8,6 +8,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>南航上海基地办公综合管理系统</title>
 		<link href="css/css.css" rel="stylesheet" type="text/css" />
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body background="images/bjtp.jpg" bgcolor="0a4187" >
 		<s:form action="loginSystemAction" method="post" theme="simple">
@@ -52,8 +53,8 @@
 				<tr>
 				<td>&nbsp;&nbsp;&nbsp;</td>
 					<td>
-						&nbsp;&nbsp;&nbsp;<s:submit name="submit" style="font-size:14px" value="确  定"></s:submit>
-						&nbsp;&nbsp;&nbsp;<s:reset name="reset" style="font-size:14px" value="重  置"></s:reset>
+						&nbsp;&nbsp;&nbsp;<s:submit name="submit" cssClass="btn btn-primary" value="确  定"></s:submit>
+						&nbsp;&nbsp;&nbsp;<s:reset name="reset" cssClass="btn btn-success" value="重  置"></s:reset>
 					</td>
 					<td>&nbsp;&nbsp;&nbsp;</td>
 				</tr>
