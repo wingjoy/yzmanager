@@ -107,15 +107,15 @@ public class verifyOutStoreAction extends ActionSupport {
 				if (this.getVerify().equals("1")) {
 					sh.setOutVerify(3);
 					sh.setHouseManagerRemarks(this.getVerifyRemarks());
-					Date date = new Date();
-					sh.setOutDate(new Timestamp(date.getTime()));
+					sh.setHouseManager(this.getNextVerifyName());
+					sh.setNextVerifyName(this.getNextVerifyName());
 				} else {
 					sh.setOutVerify(33);
 					sh.setHouseManagerRemarks(this.getVerifyRemarks());
 					Date date = new Date();
 					sh.setOutDate(new Timestamp(date.getTime()));
 				}
-				result = storeHouseDao.modifyEndOutStoreHouse(sh);
+				storeHouseDao.modifyOutStoreHouse(sh);
 			}else if (outV == 3) {
 				if (this.getVerify().equals("1")) {
 					sh.setOutVerify(4);

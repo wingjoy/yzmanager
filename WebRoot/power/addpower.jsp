@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="gb2312"%>
+    pageEncoding="utf-8"%>
 <%@page import="com.yz.manager.bean.user" %> 
 <%@page import="com.yz.manager.bean.power" %> 
 <%@page import="com.yz.manager.dao.daoUtil"%>
@@ -14,7 +14,7 @@
 </head>
 <body bgcolor="#E4FAF9">
 
- <h1 class="h1" align="center">Ôö¼ÓÔ±¹¤È¨ÏŞ</h1>
+ <h1 class="h1" align="center">å¢åŠ å‘˜å·¥æƒé™</h1>
    <% 
     user user=(user)session.getAttribute("us");
     if(user==null) response.sendRedirect("../index.jsp"); 
@@ -37,11 +37,11 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='systemManager' value='true' />"+
-						"ÏµÍ³¹ÜÀíÔ±"+
+						"ç³»ç»Ÿç®¡ç†å‘˜"+
 					"</td>"+					
 					"<td align='center'>"+
 						"<input type='checkbox' name='departmentManager' value='true' />"+
-					"²¿ÃÅ¹ÜÀíÔ±</td>"+
+					"éƒ¨é—¨ç®¡ç†å‘˜</td>"+
 							
 				"</tr>"); 
           
@@ -51,27 +51,27 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='systemManager' value='true' checked='checked' />"+
-						"ÏµÍ³¹ÜÀíÔ±"+
+						"ç³»ç»Ÿç®¡ç†å‘˜"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='systemManager' value='true'  />"+
-						"ÏµÍ³¹ÜÀíÔ±"+
+						"ç³»ç»Ÿç®¡ç†å‘˜"+
 					"</td>");
 		     }
             if(pw.isDepartmentManager()){
 		        out.println(
 					"<td align='center'>"+
 						"<input type='checkbox' name='departmentManager' value='true' checked='checked' />"+
-						"²¿ÃÅ¹ÜÀíÔ±"+
+						"éƒ¨é—¨ç®¡ç†å‘˜"+
 					"</td>");
 		     }else{
 		         out.println(
 					"<td align='center'>"+
 						"<input type='checkbox' name='departmentManager' value='true'  />"+
-						"²¿ÃÅ¹ÜÀíÔ±"+
+						"éƒ¨é—¨ç®¡ç†å‘˜"+
 					"</td></tr>");
 		     }
          }
@@ -82,15 +82,15 @@
 			<table class="left-font01" width="80%" align="center" border="1" cellspacing="0" cellpadding="0" height="40">
 				
 				<tr height="25" class="tableth" bgcolor="#8E8EFF">
-					<th align="center">ÏµÍ³Ñ¡Ôñ</th>				
-					<th align="center">²éÑ¯</th>
-					<th align="center">Ôö¼Ó</th>
-					<th align="center">ĞŞ¸Ä</th>
-					<th align="center">É¾³ı</th>
-					<th align="center">²éÑ¯ÆäËûÔ±¹¤</th>	
-					<th align="center">ÈËÔ±·ÑÓÃ»ã×Ü</th>	
-					<th align="center">·ÖÀà·ÑÓÃ»ã×Ü</th>	
-					<th align="center">ÉóºË</th>						
+					<th align="center">ç³»ç»Ÿé€‰æ‹©</th>				
+					<th align="center">æŸ¥è¯¢</th>
+					<th align="center">å¢åŠ </th>
+					<th align="center">ä¿®æ”¹</th>
+					<th align="center">åˆ é™¤</th>
+					<th align="center">æŸ¥è¯¢å…¶ä»–å‘˜å·¥</th>	
+					<th align="center">äººå‘˜è´¹ç”¨æ±‡æ€»</th>	
+					<th align="center">åˆ†ç±»è´¹ç”¨æ±‡æ€»</th>	
+					<th align="center">å®¡æ ¸</th>						
 				</tr>
 		 <%
 		   if(pw==null){
@@ -98,7 +98,7 @@
 		            " <tr height='25'>" +
 					"<td align='center'>"+
 						"<input type='checkbox' name='ams' value='true' />"+
-						"µµ°¸¹ÜÀíÏµÍ³"+
+						"æ¡£æ¡ˆç®¡ç†ç³»ç»Ÿ"+
 					"</td>"+					
 					"<td align='center'>"+
 						"<input type='checkbox' name='amsselect' value='true' />"+
@@ -127,7 +127,7 @@
 				 " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='pms' value='true' />"+
-						"ÈËÔ±¹ÜÀíÏµÍ³"+
+						"äººå‘˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>"+					
 					"<td align='center'>"+
 						"<input type='checkbox' name='pmsselect' value='true' />"+
@@ -155,7 +155,7 @@
 			   " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ems' value='true' />"+
-						"·ÑÓÃ¹ÜÀíÏµÍ³"+
+						"è´¹ç”¨ç®¡ç†ç³»ç»Ÿ"+
 					"</td>"+					
 					"<td align='center'>"+
 						"<input type='checkbox' name='emsselect' value='true' />"+
@@ -185,13 +185,13 @@
 				" <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ims' value='true' />"+
-						"¿â´æ¹ÜÀíÏµÍ³"+
+						"åº“å­˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>"+					
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsInRegister' value='true' />Èë¿â"+
+						"<input type='checkbox' name='imsInRegister' value='true' />å…¥åº“"+
 					"</td>"+
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsOutRegister' value='true' />³ö¿â"+
+						"<input type='checkbox' name='imsOutRegister' value='true' />å‡ºåº“"+
 					"</td>"+
 					"<td align='center'>&nbsp;"+			
 					"</td>	"+	
@@ -210,7 +210,7 @@
 				" <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='cms' value='true' />"+
-						"¿Í»§¹ÜÀíÏµÍ³"+
+						"å®¢æˆ·ç®¡ç†ç³»ç»Ÿ"+
 					"</td>"+					
 					"<td align='center'>"+
 						"<input type='checkbox' name='cmsselect' value='true' />"+
@@ -241,14 +241,14 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ams' value='true' checked='checked' />"+
-						"µµ°¸¹ÜÀíÏµÍ³"+
+						"æ¡£æ¡ˆç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ams' value='true'  />"+
-						"µµ°¸¹ÜÀíÏµÍ³"+
+						"æ¡£æ¡ˆç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }
 		     if(pw.isAmsselect()){
@@ -329,14 +329,14 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='pms' value='true' checked='checked' />"+
-						"ÈËÔ±¹ÜÀíÏµÍ³"+
+						"äººå‘˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='pms' value='true'  />"+
-						"ÈËÔ±¹ÜÀíÏµÍ³"+
+						"äººå‘˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }
 		     if(pw.isPmsselect()){
@@ -407,14 +407,14 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ems' value='true' checked='checked' />"+
-						"·ÑÓÃ¹ÜÀíÏµÍ³"+
+						"è´¹ç”¨ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ems' value='true'  />"+
-						"·ÑÓÃ¹ÜÀíÏµÍ³"+
+						"è´¹ç”¨ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }
 		     if(pw.isEmsselect()){
@@ -512,36 +512,36 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ims' value='true' checked='checked' />"+
-						"¿â´æ¹ÜÀíÏµÍ³"+
+						"åº“å­˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='ims' value='true'  />"+
-						"¿â´æ¹ÜÀíÏµÍ³"+
+						"åº“å­˜ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }
 		     if(pw.isImsInRegister()){
 		       out.println(			
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsInRegister' value='true'checked='checked' />Èë¿â"+
+						"<input type='checkbox' name='imsInRegister' value='true'checked='checked' />å…¥åº“"+
 					"</td>");
 		     }else{
 		         out.println(			
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsInRegister' value='true' />Èë¿â"+
+						"<input type='checkbox' name='imsInRegister' value='true' />å…¥åº“"+
 					"</td>");
 		     }
 		     if(pw.isImsOutRegister()){
 		        out.println(			
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsOutRegister' value='true'checked='checked' />³ö¿â"+
+						"<input type='checkbox' name='imsOutRegister' value='true'checked='checked' />å‡ºåº“"+
 					"</td>");
 		     }else{
 		         out.println(			
 					"<td align='center'>"+
-						"<input type='checkbox' name='imsOutRegister' value='true' />³ö¿â"+
+						"<input type='checkbox' name='imsOutRegister' value='true' />å‡ºåº“"+
 					"</td>");
 		     } 
 		        out.println(																					
@@ -577,14 +577,14 @@
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='cms' value='true' checked='checked' />"+
-						"¿Í»§¹ÜÀíÏµÍ³"+
+						"å®¢æˆ·ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }else{
 		         out.println(
 		    " <tr height='25'>"+
 					"<td align='center'>"+
 						"<input type='checkbox' name='cms' value='true'  />"+
-						"¿Í»§¹ÜÀíÏµÍ³"+
+						"å®¢æˆ·ç®¡ç†ç³»ç»Ÿ"+
 					"</td>");
 		     }
 		     if(pw.isCmsselect()){
@@ -654,8 +654,8 @@
 				<tr height="25">
 					
 					<td colspan="9" align="center">
-						<s:submit name="submit" value="Ìá ½»"></s:submit>&nbsp;&nbsp;
-						<s:reset name="reset" value="ÖØ ÖÃ"></s:reset>
+						<s:submit name="submit" value="æ äº¤"></s:submit>&nbsp;&nbsp;
+						<s:reset name="reset" value="é‡ ç½®"></s:reset>
 					</td>
 				</tr>
 			</table>

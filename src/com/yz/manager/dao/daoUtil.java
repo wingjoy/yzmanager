@@ -1793,6 +1793,7 @@ public class daoUtil {
 		        	session=HibernateSessionFactory.getSession();
 					Criteria criteria=session.createCriteria(user.class);	
 					criteria.add(Restrictions.eq("userName", username));
+					System.out.println(username+"...........");
 				    us=(user)criteria.uniqueResult();	
 				    name=us.getName();
 					} catch (HibernateException e) {			

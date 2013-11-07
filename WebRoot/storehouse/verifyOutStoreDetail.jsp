@@ -109,11 +109,9 @@
 			ps = pss.get(i);
 			request.setAttribute("ps", ps);
 			if (ps.getOutVerify() == 0) {
-				verifyName = daoUtil.selectHouseVerifyName(ps
-						.getDepartment());
+				verifyName = daoUtil.selectHouseVerifyName(user.getDepartment());
 			} else if (ps.getOutVerify() == 1) {
-				verifyName = daoUtil.selectHouseManagerVerifyName(ps
-						.getHouseId());
+				verifyName = daoUtil.selectHouseVerifyName(user.getDepartment());
 			} else if (ps.getOutVerify() == 2) {
 				verifyName = daoUtil.selectHouseManagerVerifyName(ps
 						.getHouseId());
@@ -215,7 +213,7 @@
 			<tr height="25">
 				<%
 					if (ps.getOutVerify() == 0) {
-							out.println("<td align='center' style='color:red'> 提交部门管理人员审核：</td>");
+							out.println("<td align='center' style='color:red'> 提交综合办主任员审核：</td>");
 				%>
 				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
@@ -231,7 +229,7 @@
 
 				<%
 					} else if (ps.getOutVerify() == 1) {
-							out.println("<td align='center' style='color:red'> 提交综合办主任审核：</td>");
+							out.println("<td align='center' style='color:red'> 提交部门经理审核：</td>");
 				%>
 				<td colspan='5'><select name="nextVerifyName"
 					style="width:200px;">
@@ -246,7 +244,7 @@
 				</select></td>
 				<%
 					} else if(ps.getOutVerify() == 2){
-							out.println("<td align='center' style='color:red' colspan='1'> 提交部门经理审核</td>");
+							out.println("<td align='center' style='color:red' colspan='1'> 提交办公室管理人审核</td>");
 				%>
 				<%-- <td>&nbsp;<s:hidden name="nextVerifyName"
 						value="%{#request.ps.nextVerifyName}"></s:hidden></td> --%>
