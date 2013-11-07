@@ -227,7 +227,7 @@
           <%
 		        out.println(
 		             "<tr height='23' >"+
-		             "<th>序号</th><th>申请日期</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>申请数量</th><th>单位</th><th>部门审核</th><th>库房审核</th><th>库管审核</th><th>详情</th><th>删除</th>"+
+		             "<th>序号</th><th>申请日期</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>申请数量</th><th>单位</th><th>部门审核</th><th>主任审核</th><th>经理审核</th><th>库房审核</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );
 		            int k=1;;
@@ -270,7 +270,7 @@
 		                    "<td align='center'>未通过</td>"
 		                );
 		              }
-		              if(e.getOutVerify()==3){
+		              if(e.getOutVerify()>3&e.getOutVerify()<11){
 		                out.println(
 		                    "<td align='center'>通过</td>"
 		                );
@@ -283,6 +283,21 @@
 		                    "<td align='center'>未通过</td>"
 		                );
 		              }
+		              
+		              if(e.getOutVerify()==4){
+			                out.println(
+			                    "<td align='center'>通过</td>"
+			                );
+			              }else  if(e.getOutVerify()<4||e.getOutVerify()==11||e.getOutVerify()==33){
+			                out.println(
+			                    "<td align='center'>未审核</td>"
+			                );
+			              }else  if(e.getOutVerify()==44){
+			                out.println(
+			                    "<td align='center'>未通过</td>"
+			                );
+			              }
+		              
 		               out.println(
 		              "<td align='center'><a class='left-font01' href='detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>"); 
 		               out.println(
