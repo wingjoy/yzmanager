@@ -9,6 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts"  uri="/struts-dojo-tags" %>
 <% 
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
       user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
@@ -38,8 +39,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
- <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
- <script type="text/javascript" src="../js/jquery.js"></script>
+ <link href="<%=basepath %>/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="<%=basepath %>/js/jquery.js"></script>
  <script language="javascript">
 			function changelocation6(locationid){
 			var onecount6;
@@ -171,8 +172,8 @@
 </head>
 <body bgcolor="#E4FAF9">
  <%
-     String outVerify="3";
-     request.setAttribute("outVerify","3");
+     String outVerify="4";
+     request.setAttribute("outVerify","4");
      PageSet pg=new PageSet(storeHouseDao.selectOutStoreByVerifySize(user.getUserName(),Integer.valueOf(outVerify).intValue()),15);  
      int totalsize=pg.getTotalsize();
      int totalPage=pg.getTotalpage();
@@ -319,9 +320,9 @@
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getInVerifyName())+"</td>"+
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getHouseVerifyName())+"</td>"+
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getHouseManager())+"</td>");
-		               out.println("<td align='center'><a class='left-font01' href='detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>");
+		               out.println("<td align='center'><a class='left-font01' href='"+basepath+"storehouse/detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>");
 		               out.println(
-		                "<td align='center'><a class='left-font01' href='deleteOutStoreAction.action?aId="+e.getId()+"'>>></a></td>");
+		                "<td align='center'><a class='left-font01' href='"+basepath+"storehouse/deleteOutStoreAction.action?aId="+e.getId()+"'>>></a></td>");
 		               out.println( "</tr>");
 		         } 
 		         %>
@@ -332,19 +333,19 @@
              <td>共<%= totalsize%>条记录&nbsp;|</td>
              <td>共<%= totalPage%>页&nbsp;|</td>
              <td>当前第<%= currentPage%>页&nbsp;|</td>
-             <td><a class="tablelink" href="outSelect.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelect.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelect.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelect.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">         
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){
                  if(j==currentPage){
                    out.println(
-                  "<option selected value='outSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option selected value='"+basepath+"storehouse/outSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
                  }else{
                  out.println(
-                  "<option value='outSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option value='"+basepath+"storehouse/outSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
               }
               }   
               %>           

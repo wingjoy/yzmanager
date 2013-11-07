@@ -9,6 +9,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
       user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
@@ -341,9 +342,9 @@
 		              "<td align='center'>&nbsp;"+e.getUnit()+"</td>"+
 		              "<td align='center'>&nbsp;"+e.getTotalPrice()+"</td>"+
 		               "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getInVerifyName())+"</td>");
-		               out.println("<td align='center'><a class='left-font01' href='detailStore.jsp?aId="+e.getId()+"' >>></a></td>");
+		               out.println("<td align='center'><a class='left-font01' href='"+basepath+"storehouse/detailStore.jsp?aId="+e.getId()+"' >>></a></td>");
 		               out.println(
-		                "<td align='center'><a class='left-font01'onClick='alert('删除可能会影响数据库，你确定删除么？')' href='deleteStoreAction.action?aId="+e.getId()+"'>>></a></td>");
+		                "<td align='center'><a class='left-font01'onClick='alert('删除可能会影响数据库，你确定删除么？')' href='"+basepath+"storehouse/deleteStoreAction.action?aId="+e.getId()+"'>>></a></td>");
 		               out.println( "</tr>");
 		         } 
 		         %>
@@ -354,19 +355,19 @@
              <td>共<%= totalsize%>条记录&nbsp;|</td>
              <td>共<%= totalPage%>页&nbsp;|</td>
              <td>当前第<%= currentPage%>页&nbsp;|</td>
-             <td><a class="tablelink" href="inSelect.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="inSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="inSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="inSelect.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath%>storehouse/inSelect.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath%>storehouse/inSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath%>storehouse/inSelect.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath%>storehouse/inSelect.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">         
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){
                  if(j==currentPage){
                    out.println(
-                  "<option selected value='inSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option selected value='"+basepath+"storehouse/inSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
                  }else{
                  out.println(
-                  "<option value='inSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
+                  "<option value='"+basepath+"storehouse/inSelect.jsp?currentPage="+j+"'>&nbsp;&nbsp;"+j+"&nbsp;&nbsp;</option>");
               }
               }   
               %>           

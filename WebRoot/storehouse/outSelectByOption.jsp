@@ -10,7 +10,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="struts" uri="/struts-dojo-tags" %>
 <%
-      user user=(user)session.getAttribute("us");
+String basepath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+ request.setAttribute("basepath", basepath);
+user user=(user)session.getAttribute("us");
       if(user==null) response.sendRedirect("../index.jsp"); 
 
       List<shouse> sh1=new ArrayList<shouse>();
@@ -34,7 +36,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="../css/css.css" rel="stylesheet" type="text/css" />
+<link href="<%=basepath %>/css/css.css" rel="stylesheet" type="text/css" />
+ <link href="<%=basepath %>/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <script type="text/javascript" src="<%=basepath %>/js/jquery.js"></script>
 <struts:head/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
@@ -156,6 +160,12 @@
 		} 
 		} 		   
 		}
+		$(function(){
+			$(".export").click(function(){
+				$("[name='export']").val(1);
+				$("#submit").trigger("click");
+			});
+		});
 		</script>
 
 </head>
@@ -172,8 +182,8 @@
 		int totalsize=0;
         int totalPage=1;
         int currentPage=1;
-        String outVerify="3";
-        request.setAttribute("outVerify","3");
+        String outVerify="4";
+        request.setAttribute("outVerify","4");
         PageSet pg=new PageSet();  
     
         List<outStoreHouse> sh=new ArrayList<outStoreHouse>();
@@ -193,9 +203,11 @@
 	        sh=storeHouseDao.selectOutStoreByOption(adp,vnm,dp1,sh2,fc1,sc1,sdb1,sde1,Integer.valueOf(outVerify).intValue(),currentPage,pg.getPagesize());
          }
   %>   
-   <s:form name="myform" action="outSelectByOption?currentPage=1" method="post" theme="simple" >
+   <s:form name="myform" action="%{#request.basepath}storehouse/outSelectByOption?currentPage=1" method="post" theme="simple" >
       <table  class="left-font01" align="center" border="0" cellspacing="0" cellpadding="0" >
-        <tr><td><s:hidden name="outVerify" value="%{#request.outVerify}"/></td></tr>
+        <tr><td><s:hidden name="outVerify" value="%{#request.outVerify}"/>
+        <s:hidden name="export" value="0"/>
+        </td></tr>
        
        <tr>
 		<td  align="center"> 领用部门：</td>
@@ -289,8 +301,8 @@
            	  <struts:datetimepicker  cssStyle="width:100px;" name="addDateBegin" displayFormat="yyyy-MM-dd"  />                       
                 到<struts:datetimepicker cssStyle="width:100px;" name="addDateEnd" displayFormat="yyyy-MM-dd"  />                         
            </td> 
-            <td> &nbsp;&nbsp;&nbsp;<s:submit style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td> 
-             &nbsp;<a class="left-font01" href="outSelectExportByOptionAction.action">出库导出</a></td>                                                          
+            <td> &nbsp;&nbsp;&nbsp;<s:submit id="submit" cssClass="btn btn-primary" style="font-size:14px" name="submit" value="查  找"></s:submit> </td><td>
+             &nbsp;<a class="left-font01 export btn btn-primary" href="javascript:void(0)">出库导出</a></td>                                                          
       </tr>
           <tr>
 					<td>
@@ -300,14 +312,14 @@
         </table>
       </s:form>
 
-       <table class="left-font01" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
+       <table class="table table-bordered" width="100%"  align="center" border="1" cellspacing="0" cellpadding="0" >
           
           <%
                 int totalCount=0;  
                 DecimalFormat dr=new DecimalFormat();
                 dr.setMaximumFractionDigits(2);
 		        out.println(
-		             "<tr height='23' class='tableth'bgcolor='#8E8EFF'>"+
+		             "<tr height='23'>"+
 		              "<th>序号</th><th>出库日期</th><th>领用部门</th><th>领用人</th><th>领用库房</th><th>物品分类</th><th>物品名称</th><th>出库数量</th><th>单位</th><th>部门审核人</th><th>库房审核人</th><th>库管员</th><th>详情</th><th>删除</th>"+
 		             "</tr>"
 		            );
@@ -331,9 +343,9 @@
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getInVerifyName())+"</td>"+
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getHouseVerifyName())+"</td>"+
 		              "<td align='center'>&nbsp;"+daoUtil.selectUser(e.getHouseManager())+"</td>");
-		               out.println("<td align='center'><a class='left-font01' href='detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>");
+		               out.println("<td align='center'><a class='left-font01' href='"+basepath+"storehouse/detailOutStore.jsp?aId="+e.getId()+"' >>></a></td>");
 		               out.println(
-		                "<td align='center'><a class='left-font01' href='deleteOutStoreAction.action?aId="+e.getId()+"'>>></a></td>");
+		                "<td align='center'><a class='left-font01' href='"+basepath+"storehouse/deleteOutStoreAction.action?aId="+e.getId()+"'>>></a></td>");
 		               out.println( "</tr>");
 		                 totalCount=totalCount+e.getApplyCount();
 		         } 
@@ -360,10 +372,10 @@
              <td>共<%= totalsize%>条记录&nbsp;|</td>
              <td>共<%= totalPage%>页&nbsp;|</td>
              <td>当前第<%= currentPage%>页&nbsp;|</td>
-             <td><a class="tablelink" href="outSelectByOption.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelectByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelectByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
-             <td><a class="tablelink" href="outSelectByOption.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelectByOption.jsp?currentPage=1">首页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelectByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage-1) %>">上一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelectByOption.jsp?currentPage=<%=pg.searchCurrentPage(currentPage+1)%>">下一页</a>&nbsp;&nbsp;</td>
+             <td><a class="tablelink" href="<%=basepath %>storehouse/outSelectByOption.jsp?currentPage=<%=totalPage %>">尾页</a>&nbsp;&nbsp;</td>
              <td>跳转到第<select name="selectPage" onchange="document.location.href=this.value">         
              <%
                 for(int j=1;j<=pg.getTotalpage();j++){

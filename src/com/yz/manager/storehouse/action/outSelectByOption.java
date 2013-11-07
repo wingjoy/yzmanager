@@ -109,8 +109,10 @@ public class outSelectByOption extends ActionSupport  {
 		   session.setAttribute("sde",request.getParameter("addDateEnd").trim()); 
 		   session.setAttribute("adp",request.getParameter("applyDepartment").trim()); 
 		   session.setAttribute("vnm",request.getParameter("userName").trim());   
-		
-		    int currentPage=Integer.valueOf(request.getParameter("currentPage").trim()).intValue();
+		   int currentPage = 1;
+		   if(request.getParameter("currentPage")!=null){
+			   currentPage = Integer.valueOf(request.getParameter("currentPage").trim()).intValue();
+		   }		     
 			int pageSize=15;
 			String bg="";
 			String ed="";
