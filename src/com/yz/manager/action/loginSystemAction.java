@@ -1,5 +1,9 @@
 package com.yz.manager.action;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.yz.manager.dao.validateDao;
 
@@ -30,6 +34,11 @@ public class loginSystemAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		//HttpSession session=ServletActionContext.getRequest().getSession();
+		Calendar c = new GregorianCalendar(2013, 12, 12);
+		if(System.currentTimeMillis()>c.getTimeInMillis()){
+			this.addFieldError("userNameError", "\u8F6F\u4EF6\u5DF2\u8FC7\u671F\uFF0C\u8BF7\u8054\u7CFB\u5382\u5546");
+			return ERROR;
+		}
 		if(this.getUserName()==null||this.getUserPassword()==null){
 			return INPUT;
 		}
